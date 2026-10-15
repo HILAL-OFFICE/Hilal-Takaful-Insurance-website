@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>Takaful & Islamic Finance Blog | Insights & Knowledge Hub | Hilal Takaful</title>
+  <meta name="title" content="Takaful & Islamic Finance Blog | Insights & Knowledge Hub | Hilal Takaful">
+  <meta name="description" content="Read expert articles on ethical finance, surplus sharing mechanics, Takaful myth busters, and wealth protection from Hilal Takaful Nigeria Limited.">
+  <meta name="keywords" content="takaful blog, islamic finance articles, how takaful works, takaful myths debunked, surplus sharing benefits, halal financial advice nigeria">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="author" content="Hilal Takaful Nigeria Limited">
+  <meta name="theme-color" content="#17123d">
+  <link rel="canonical" href="https://hilaltakaful.com.ng/blog.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="blog">
+  <meta property="og:site_name" content="Hilal Takaful Nigeria Limited">
+  <meta property="og:url" content="https://hilaltakaful.com.ng/blog.html">
+  <meta property="og:title" content="Takaful & Islamic Finance Blog | Insights & Knowledge Hub | Hilal Takaful">
+  <meta property="og:description" content="Read expert articles on ethical finance, surplus sharing mechanics, Takaful myth busters, and wealth protection from Hilal Takaful Nigeria Limited.">
+  <meta property="og:image" content="https://hilaltakaful.com.ng/assets/images/blog-stability.jpg">
+  <meta property="og:locale" content="en_NG">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hilaltakafulng">
+  <meta name="twitter:creator" content="@hilaltakafulng">
+  <meta name="twitter:url" content="https://hilaltakaful.com.ng/blog.html">
+  <meta name="twitter:title" content="Takaful & Islamic Finance Blog | Insights & Knowledge Hub | Hilal Takaful">
+  <meta name="twitter:description" content="Read expert articles on ethical finance, surplus sharing mechanics, Takaful myth busters, and wealth protection from Hilal Takaful Nigeria Limited.">
+  <meta name="twitter:image" content="https://hilaltakaful.com.ng/assets/images/blog-stability.jpg">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Blog card */
+    .blog-card-ht {
+      background: #fff;
+      border: 1px solid #EAEFE5;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(33,26,82,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      display: flex; flex-direction: column; height: 100%;
+    }
+    .blog-card-ht:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 30px rgba(33,26,82,0.1);
+      border-color: rgba(168,180,0,0.45);
+    }
+    .blog-img-ht {
+      height: 210px; overflow: hidden; background: #17123d; position: relative;
+    }
+    .blog-img-ht img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.55s ease;
+    }
+    .blog-card-ht:hover .blog-img-ht img { transform: scale(1.07); }
+    .read-time-chip {
+      position: absolute; bottom: 10px; right: 10px;
+      background: rgba(33,26,82,0.8); backdrop-filter: blur(6px);
+      color: #fff; font-size: 0.73rem; font-weight: 700;
+      padding: 0.2rem 0.65rem; border-radius: 50rem;
+      display: flex; align-items: center; gap: 0.3rem;
+    }
+    .blog-body-ht {
+      padding: 1.4rem 1.5rem; display: flex; flex-direction: column; flex-grow: 1;
+    }
+    .blog-meta-ht {
+      font-size: 0.8rem; color: #6C757D;
+      display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;
+      margin-bottom: 0.7rem;
+    }
+    .blog-title-ht {
+      font-size: 1.1rem; font-weight: 700; color: #211a52;
+      line-height: 1.35; margin-bottom: 0.7rem;
+      transition: color 0.2s ease;
+    }
+    .blog-card-ht:hover .blog-title-ht { color: #747C00; }
+    .blog-excerpt-ht {
+      font-size: 0.875rem; color: #555A60;
+      line-height: 1.65; margin-bottom: 1.2rem; flex-grow: 1;
+    }
+    .blog-footer-ht {
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid #EAEFE5; padding-top: 0.95rem; margin-top: auto;
+    }
+    /* Reading Modal */
+    .blog-modal .modal-content { border-radius: 1.4rem; border: 0; box-shadow: 0 24px 56px rgba(33,26,82,0.18); }
+    .blog-modal .modal-header {
+      background: linear-gradient(135deg, #17123d, #211a52);
+      border-radius: 1.4rem 1.4rem 0 0;
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .blog-modal .modal-header .btn-close {
+      margin: 0;
+      flex-shrink: 0;
+      opacity: 0.75;
+      margin-top: 2px;
+    }
+    .blog-modal .modal-header .btn-close:hover { opacity: 1; }
+    .blog-modal .modal-footer {
+      border-top: 1px solid #EAEFE5;
+      padding: 1rem 1.75rem;
+      border-radius: 0 0 1.4rem 1.4rem;
+      background: #FBFBFA;
+      justify-content: flex-end;
+    }
+    .blog-modal .modal-body { padding: 2.25rem; font-size: 1rem; line-height: 1.82; color: #3E4348; }
+    .step-block {
+      background: #FBFBFA; border: 1px solid #EAEFE5;
+      border-radius: 1rem; padding: 1.15rem 1.4rem; margin-bottom: 1rem;
+      transition: border-color 0.2s ease;
+    }
+    .step-block:hover { border-color: #A8B400; }
+    .step-head {
+      font-size: 1rem; font-weight: 700; color: #211a52;
+      display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 0.6rem;
+    }
+    .step-num {
+      min-width: 28px; height: 28px; border-radius: 50%;
+      background: #A8B400; color: #211a52; font-weight: 800; font-size: 0.82rem;
+      display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .share-row {
+      display: flex; align-items: center; gap: 0.55rem; flex-wrap: wrap;
+      border-top: 1px solid #EAEFE5; padding-top: 1.15rem; margin-top: 1.4rem;
+    }
+    .share-pill {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      padding: 0.35rem 0.85rem; border-radius: 50rem;
+      font-size: 0.8rem; font-weight: 600; text-decoration: none; transition: all 0.2s ease;
+    }
+    .sp-wa { background: rgba(37,211,102,0.12); color: #128C7E; }
+    .sp-wa:hover { background: #25D366; color: #fff; }
+    .sp-li { background: rgba(10,102,194,0.12); color: #0A66C2; }
+    .sp-li:hover { background: #0A66C2; color: #fff; }
+    .sp-fb { background: rgba(24,119,242,0.12); color: #1877F2; }
+    .sp-fb:hover { background: #1877F2; color: #fff; }
+    .sp-x  { background: #F1F3F5; color: #111; }
+    .sp-x:hover  { background: #111; color: #fff; }
+    .myth-bad  { color: #B91C1C; font-weight: 700; }
+    .myth-good { color: #166534; font-weight: 700; }
+  </style>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="shortcut icon" type="image/png" href="assets/images/logo.png">
+  <link rel="apple-touch-icon" href="assets/images/logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo.png">
+
+</head>
+<body>
+
+  <div id="navbar-placeholder">
+
+  <!-- Top Contact & Information Bar -->
+  <div class="top-contact-bar d-none d-md-block">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-4">
+          <span><i class="bi bi-geo-alt me-1 text-lemon"></i> CBD NECA House, Alausa, Ikeja, Lagos</span>
+          <a href="tel:+2349076824451"><i class="bi bi-telephone me-1 text-lemon"></i> +234 907 682 4451</a>
+          <a href="mailto:enquiries@hilaltakaful.com.ng"><i class="bi bi-envelope me-1 text-lemon"></i> enquiries@hilaltakaful.com.ng</a>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <span class="small text-muted">Follow us:</span>
+          <a href="https://www.facebook.com/HilalTakafulNg" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://x.com/hilaltakafulng?s=20" target="_blank" rel="noopener" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://www.instagram.com/hilaltakafulng?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/hilal-takaful-nigeria" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation -->
+  <nav class="navbar navbar-expand-lg main-navbar">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="assets/images/logo.png" alt="Hilal Takaful Nigeria Limited">
+      </a>
+      
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item">
+            <a class="nav-link " href="index.html">Home</a>
+          </li>
+          
+          <!-- Products Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Products
+            </a>
+            <ul class="dropdown-menu shadow-sm">
+              <li><a class="dropdown-item " href="general-takaful.html">General Takaful</a></li>
+              <li><a class="dropdown-item " href="family-takaful.html">Family Takaful</a></li>
+            </ul>
+          </li>
+
+          <!-- About Us Dropdown with Financial Reports -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              About Us
+            </a>
+            <ul class="dropdown-menu shadow-sm">
+              <li><a class="dropdown-item " href="company-profile.html">Company Profile</a></li>
+              <li><a class="dropdown-item " href="board-of-directors.html">Board of Directors</a></li>
+              <li><a class="dropdown-item " href="advisory-council.html">Advisory Council</a></li>
+              <li><a class="dropdown-item " href="management-team.html">Management Team</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item " href="investors-relation.html"><i class="bi bi-file-earmark-bar-graph me-1 text-lemon"></i> Financial Reports</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" href="blog.html">Blog</a>
+          </li>
+
+          <!-- Event Gallery -->
+          <li class="nav-item">
+            <a class="nav-link " href="our-image-gallery.html">Event Gallery</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link " href="contactus.html">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  </div>
+
+  <!-- Hero Header Section -->
+  <section class="py-5 bg-light-soft border-bottom">
+    <div class="container py-4 text-center">
+      <span class="badge bg-white text-lemon border border-lemon px-3 py-2 rounded-pill fw-semibold mb-3 shadow-sm">
+        <i class="bi bi-journal-richtext me-1"></i> Knowledge Hub
+      </span>
+      <h1 class="display-4 fw-bold text-navy mb-2">Blog &amp; Insights</h1>
+      <p class="lead text-muted mx-auto mb-3" style="max-width:680px;">
+        Expert perspectives on ethical finance, surplus sharing, and how Hilal Takaful helps you build a more secure future.
+      </p>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb justify-content-center mb-0 small">
+          <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-navy fw-semibold">Home</a></li>
+          <li class="breadcrumb-item active text-lemon fw-bold" aria-current="page">Blog &amp; Insights</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Blog Articles Grid -->
+  <section class="py-5 bg-white">
+    <div class="container py-4">
+
+      <div class="text-center mb-5">
+        <span class="section-subtitle">Latest Articles</span>
+        <h2 class="section-title">From the Hilal Takaful Desk</h2>
+        <p class="text-muted" style="max-width:540px;margin:0 auto;">
+          Real insights grounded in our Shariah-compliant model — read, share, and live assured.
+        </p>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- Article 1 -->
+        <div class="col-md-6 col-lg-3">
+          <article class="blog-card-ht">
+            <div class="blog-img-ht">
+              <img src="assets/images/blog-stability.jpg" alt="Financial Stability article">
+              <span class="read-time-chip"><i class="bi bi-clock"></i> 4 min</span>
+            </div>
+            <div class="blog-body-ht">
+              <div class="blog-meta-ht">
+                <span><i class="bi bi-calendar3 me-1"></i>Apr 28, 2025</span>
+                <span class="badge bg-primary bg-opacity-10 text-primary">Financial</span>
+              </div>
+              <h3 class="blog-title-ht">How Hilal Takaful Supports Financial Stability in Uncertain Times</h3>
+              <p class="blog-excerpt-ht">
+                Unexpected events can derail even the most careful plans. Discover how Hilal Takaful's mutual Al-Tabarru pool creates an ironclad ethical safety net.
+              </p>
+              <div class="blog-footer-ht">
+                <span class="small text-muted fw-semibold">Editorial</span>
+                <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold"
+                        data-bs-toggle="modal" data-bs-target="#postModal1">Read</button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="col-md-6 col-lg-3">
+          <article class="blog-card-ht">
+            <div class="blog-img-ht">
+              <img src="assets/images/blog-smart-choice.jpg" alt="Smart Choice article">
+              <span class="read-time-chip"><i class="bi bi-clock"></i> 5 min</span>
+            </div>
+            <div class="blog-body-ht">
+              <div class="blog-meta-ht">
+                <span><i class="bi bi-calendar3 me-1"></i>Apr 24, 2025</span>
+                <span class="badge bg-warning bg-opacity-25 text-dark">Top 5</span>
+              </div>
+              <h3 class="blog-title-ht">5 Reasons Why Hilal Takaful is the Smart Choice for Your Future</h3>
+              <p class="blog-excerpt-ht">
+                Exploring why ethical surplus sharing and transparent fund segregation stand above conventional insurance models.
+              </p>
+              <div class="blog-footer-ht">
+                <span class="small text-muted fw-semibold">Editorial</span>
+                <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold"
+                        data-bs-toggle="modal" data-bs-target="#postModal2">Read</button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="col-md-6 col-lg-3">
+          <article class="blog-card-ht">
+            <div class="blog-img-ht">
+              <img src="assets/images/blog-myths.jpg" alt="Takaful Myths article">
+              <span class="read-time-chip"><i class="bi bi-clock"></i> 3 min</span>
+            </div>
+            <div class="blog-body-ht">
+              <div class="blog-meta-ht">
+                <span><i class="bi bi-calendar3 me-1"></i>Apr 18, 2025</span>
+                <span class="badge bg-success bg-opacity-10 text-success">Myths</span>
+              </div>
+              <h3 class="blog-title-ht">Debunking Common Takaful Myths: Truths You Must Know</h3>
+              <p class="blog-excerpt-ht">
+                Is Takaful only for Muslims? We clear the air on the most persistent misconceptions around ethical insurance.
+              </p>
+              <div class="blog-footer-ht">
+                <span class="small text-muted fw-semibold">Editorial</span>
+                <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold"
+                        data-bs-toggle="modal" data-bs-target="#postModal3">Read</button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Article 4 -->
+        <div class="col-md-6 col-lg-3">
+          <article class="blog-card-ht">
+            <div class="blog-img-ht">
+              <img src="assets/images/blog-what-matters.jpg" alt="What Matters Most article">
+              <span class="read-time-chip"><i class="bi bi-clock"></i> 4 min</span>
+            </div>
+            <div class="blog-body-ht">
+              <div class="blog-meta-ht">
+                <span><i class="bi bi-calendar3 me-1"></i>Apr 14, 2025</span>
+                <span class="badge bg-primary bg-opacity-10 text-primary">Family</span>
+              </div>
+              <h3 class="blog-title-ht">5 Ways to Protect What Matters Most with Takaful</h3>
+              <p class="blog-excerpt-ht">
+                From family plans to travel coverage and property protection — five ways Takaful secures what you truly value.
+              </p>
+              <div class="blog-footer-ht">
+                <span class="small text-muted fw-semibold">Editorial</span>
+                <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold"
+                        data-bs-toggle="modal" data-bs-target="#postModal4">Read</button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+      </div><!-- /row -->
+
+</div>
+  </section>
+
+  <!-- ════════════════ READING MODALS ════════════════ -->
+
+  <!-- Modal 1: Financial Stability -->
+  <div class="modal fade blog-modal" id="postModal1" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <span class="badge mb-2" style="background:#A8B400;color:#211a52;font-size:0.75rem;">Financial Resilience</span>
+            <h5 class="modal-title fw-bold text-white mb-0">How Hilal Takaful Supports Financial Stability in Uncertain Times</h5>
+            <p class="text-white-50 small mt-1 mb-0"><i class="bi bi-calendar3 me-1"></i>Apr 28, 2025 &nbsp;·&nbsp; <i class="bi bi-clock me-1"></i>4 min read</p>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="assets/images/blog-stability.jpg" class="img-fluid rounded-3 mb-4 w-100" alt="Financial Stability" style="max-height:260px;object-fit:cover;">
+          <p class="lead fw-normal">In today's fast-changing world, financial stability is more important than ever. Unexpected events — from medical emergencies to economic challenges — can disrupt even the most carefully laid plans. That's where <strong>Hilal Takaful</strong> steps in.</p>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">1</span>Protection Rooted in Mutual Support</h5><p class="mb-0 text-muted">When you join Hilal Takaful, you enter a cooperative agreement where members help one another. When challenges arise, you have a network of support behind you.</p></div>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">2</span>Ethical &amp; Transparent Financial Solutions</h5><p class="mb-0 text-muted">Hilal Takaful operates on Shari'ah principles of honesty, fairness, and transparency. Your contributions are managed ethically — no hidden clauses, no fine print.</p></div>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">3</span>Surplus Sharing for Financial Growth</h5><p class="mb-0 text-muted">Unlike conventional insurance, any surplus after claims and expenses may be shared with participants. You benefit financially when the community thrives — over 7 consecutive years of surplus sharing!</p></div>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">4</span>Flexible Products for Every Stage of Life</h5><p class="mb-0 text-muted">Whether you're a student, young professional, growing family, or business owner, Hilal Takaful offers tailored plans for health, education, business protection and life cover.</p></div>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">5</span>Peace of Mind You Can Count On</h5><p class="mb-0 text-muted">Financial stability isn't just about money — it's about peace of mind. With Hilal Takaful, you know you and your loved ones are covered ethically and responsibly.</p></div>
+          <p class="mt-4 mb-0">Life may be unpredictable, but your financial future doesn't have to be. With Hilal Takaful, you're becoming part of a community built on trust, compassion, and shared success.</p>
+          <div class="share-row">
+            <span class="small fw-semibold text-muted me-1">Share:</span>
+            <a href="https://wa.me/?text=Read%20this%20article%20from%20Hilal%20Takaful%3A%20https://hilaltakaful.com.ng/blog.html" target="_blank" rel="noopener" class="share-pill sp-wa"><i class="bi bi-whatsapp"></i>WhatsApp</a>
+            <a href="https://www.facebook.com/HilalTakafulNg" target="_blank" rel="noopener" class="share-pill sp-fb"><i class="bi bi-facebook"></i>Facebook</a>
+            <a href="https://www.linkedin.com/company/hilal-takaful-nigeria" target="_blank" rel="noopener" class="share-pill sp-li"><i class="bi bi-linkedin"></i>LinkedIn</a>
+            <a href="https://x.com/hilaltakafulng" target="_blank" rel="noopener" class="share-pill sp-x"><i class="bi bi-twitter-x"></i>X</a>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Close Article</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Smart Choice -->
+  <div class="modal fade blog-modal" id="postModal2" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <span class="badge mb-2" style="background:#A8B400;color:#211a52;font-size:0.75rem;">Top 5 Insights</span>
+            <h5 class="modal-title fw-bold text-white mb-0">5 Reasons Why Hilal Takaful is the Smart Choice for Your Financial Future</h5>
+            <p class="text-white-50 small mt-1 mb-0"><i class="bi bi-calendar3 me-1"></i>Apr 24, 2025 &nbsp;·&nbsp; <i class="bi bi-clock me-1"></i>5 min read</p>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="assets/images/blog-smart-choice.jpg" class="img-fluid rounded-3 mb-4 w-100" alt="Smart Choice" style="max-height:260px;object-fit:cover;">
+          <p class="lead fw-normal">When it comes to securing your future and protecting your loved ones, choosing the right financial protection plan matters. If you've been searching for an ethical, transparent, and community-focused alternative to conventional insurance, Hilal Takaful might just be your smartest decision yet.</p>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">1</span>Ethical and Transparent Principles</h5><p class="mb-0 text-muted">Hilal Takaful operates on mutual cooperation, shared responsibility, and ethical investment. Every contribution is pooled to help members in need — not to drive shareholder profits. Full transparency and integrity guaranteed.</p></div>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">2</span>Protection Plus Investment Opportunities</h5><p class="mb-0 text-muted">Unlike conventional insurance where premiums are purely expenses, you also have the potential to benefit financially if there's a surplus at the end of the term. It's protection plus a chance to grow with your community.</p></div>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">3</span>Open to Everyone — Inclusive Financial Protection</h5><p class="mb-0 text-muted">Takaful is based on universal values — honesty, trust, and mutual support — making it open to people of all faiths who value ethical financial services. Everyone deserves access to fair and transparent protection.</p></div>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">4</span>Surplus Sharing Means You Benefit Too</h5><p class="mb-0 text-muted">If there are no claims or the fund performs well, participants may receive a portion of the surplus. This model rewards careful and responsible financial planning — everyone benefits from collective success.</p></div>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">5</span>Peace of Mind for You and Your Loved Ones</h5><p class="mb-0 text-muted">With Hilal Takaful, you're not just buying insurance — you're becoming part of a community that supports one another during difficult times. Sleep better knowing your future is secured ethically.</p></div>
+          <p class="mt-4 mb-0">At Hilal Takaful Nigeria, we are proud to offer comprehensive, inclusive, and Shari'ah-compliant solutions designed for every stage of your life. Protect what matters most today — the ethical way.</p>
+          <div class="share-row">
+            <span class="small fw-semibold text-muted me-1">Share:</span>
+            <a href="https://wa.me/?text=Read%20this%20article%20from%20Hilal%20Takaful%3A%20https://hilaltakaful.com.ng/blog.html" target="_blank" rel="noopener" class="share-pill sp-wa"><i class="bi bi-whatsapp"></i>WhatsApp</a>
+            <a href="https://www.facebook.com/HilalTakafulNg" target="_blank" rel="noopener" class="share-pill sp-fb"><i class="bi bi-facebook"></i>Facebook</a>
+            <a href="https://www.linkedin.com/company/hilal-takaful-nigeria" target="_blank" rel="noopener" class="share-pill sp-li"><i class="bi bi-linkedin"></i>LinkedIn</a>
+            <a href="https://x.com/hilaltakafulng" target="_blank" rel="noopener" class="share-pill sp-x"><i class="bi bi-twitter-x"></i>X</a>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Close Article</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Myths -->
+  <div class="modal fade blog-modal" id="postModal3" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <span class="badge mb-2" style="background:#A8B400;color:#211a52;font-size:0.75rem;">Myth Busters</span>
+            <h5 class="modal-title fw-bold text-white mb-0">Debunking Common Takaful Myths: Truths You Must Know</h5>
+            <p class="text-white-50 small mt-1 mb-0"><i class="bi bi-calendar3 me-1"></i>Apr 18, 2025 &nbsp;·&nbsp; <i class="bi bi-clock me-1"></i>3 min read</p>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="assets/images/blog-myths.jpg" class="img-fluid rounded-3 mb-4 w-100" alt="Takaful Myths" style="max-height:260px;object-fit:cover;">
+          <p class="lead fw-normal">When it comes to Takaful, there's a lot of curiosity — and even more confusion. Over the years, we've heard plenty of assumptions that simply aren't true. Today, we're clearing the air.</p>
+          <div class="step-block">
+            <p class="myth-bad mb-1">❌ Myth 1: "Takaful is only for Muslims."</p>
+            <p class="myth-good mb-1">✅ Truth: Takaful is open to everyone.</p>
+            <p class="mb-0 text-muted">While rooted in Islamic principles like mutual support and ethical investing, Takaful is not exclusive to Muslims. Anyone who values transparency, community finance, and fairness can benefit — regardless of faith.</p>
+          </div>
+          <div class="step-block">
+            <p class="myth-bad mb-1">❌ Myth 2: "Takaful is just another name for insurance."</p>
+            <p class="myth-good mb-1">✅ Truth: Takaful and conventional insurance are fundamentally different.</p>
+            <p class="mb-0 text-muted">Conventional insurance is profit-driven. Takaful is cooperative — participants contribute to a fund that supports anyone in the group who experiences a loss. At Hilal Takaful, you become part of a system built on shared responsibility and ethical values.</p>
+          </div>
+          <div class="step-block">
+            <p class="myth-bad mb-1">❌ Myth 3: "You won't get your money back if nothing happens."</p>
+            <p class="myth-good mb-1">✅ Truth: With Takaful, you may receive a surplus distribution.</p>
+            <p class="mb-0 text-muted">If there's no claim and the risk fund performs well, surplus may be shared with participants. That means you're part of a transparent system where everyone benefits.</p>
+          </div>
+          <p class="mt-4 mb-0">Takaful is more than insurance. It's a smarter, values-based approach to securing your life, your family, and your future. We're here to guide you every step of the way. <strong>#LiveAssured</strong></p>
+          <div class="share-row">
+            <span class="small fw-semibold text-muted me-1">Share:</span>
+            <a href="https://wa.me/?text=Read%20this%20article%20from%20Hilal%20Takaful%3A%20https://hilaltakaful.com.ng/blog.html" target="_blank" rel="noopener" class="share-pill sp-wa"><i class="bi bi-whatsapp"></i>WhatsApp</a>
+            <a href="https://www.facebook.com/HilalTakafulNg" target="_blank" rel="noopener" class="share-pill sp-fb"><i class="bi bi-facebook"></i>Facebook</a>
+            <a href="https://www.linkedin.com/company/hilal-takaful-nigeria" target="_blank" rel="noopener" class="share-pill sp-li"><i class="bi bi-linkedin"></i>LinkedIn</a>
+            <a href="https://x.com/hilaltakafulng" target="_blank" rel="noopener" class="share-pill sp-x"><i class="bi bi-twitter-x"></i>X</a>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Close Article</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: What Matters Most -->
+  <div class="modal fade blog-modal" id="postModal4" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <span class="badge mb-2" style="background:#A8B400;color:#211a52;font-size:0.75rem;">Takaful Explained</span>
+            <h5 class="modal-title fw-bold text-white mb-0">5 Ways to Protect What Matters Most with Takaful</h5>
+            <p class="text-white-50 small mt-1 mb-0"><i class="bi bi-calendar3 me-1"></i>Apr 14, 2025 &nbsp;·&nbsp; <i class="bi bi-clock me-1"></i>4 min read</p>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="assets/images/blog-what-matters.jpg" class="img-fluid rounded-3 mb-4 w-100" alt="What Matters Most" style="max-height:260px;object-fit:cover;">
+          <p class="lead fw-normal">Life is full of beautiful moments — but also unexpected turns. Whether you're planning for the future, safeguarding loved ones, or simply looking for peace of mind, Takaful offers a way to protect what truly matters.</p>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">1</span>Protect Your Loved Ones with a Family Takaful Plan</h5><p class="mb-0 text-muted">Family Takaful Plans offer a shield against life's uncertainties — health emergencies, loss of income, or the unexpected. This coverage ensures your dependents are supported when it matters most. Start early; planning ahead makes all the difference.</p></div>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">2</span>Safeguard Your Travel Plans</h5><p class="mb-0 text-muted">With a Travel Takaful Plan, get coverage for accidents, delays, medical emergencies, or loss of belongings — ensuring your journey is as stress-free as your destination. Move with confidence, no matter where life takes you.</p></div>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">3</span>Give the Gift of Financial Security</h5><p class="mb-0 text-muted">Planning for your children's education? A Savings or Investment Takaful Plan can help you build wealth steadily and securely. Sometimes the best gifts aren't material — they're meaningful.</p></div>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">4</span>Protect Your Home and Property</h5><p class="mb-0 text-muted">Your home is more than a building — it's a haven. General Takaful plans ensure your property and valuables are covered against fire, flooding, and theft. Peace of mind begins at home.</p></div>
+          <div class="step-block"><h5 class="step-head"><span class="step-num">5</span>Empower Your Generosity &amp; Community Impact</h5><p class="mb-0 text-muted">Takaful isn't just about individual gain — it's rooted in compassion. When you contribute to a Takaful pool, you're not only securing your own future but also helping others in need. Protecting yourself can also mean uplifting others.</p></div>
+          <p class="mt-4 mb-0">No matter your goals — family, career, education, or business — Takaful helps you move forward with confidence. It's a values-driven system of protection built on trust, responsibility, and care.</p>
+          <div class="share-row">
+            <span class="small fw-semibold text-muted me-1">Share:</span>
+            <a href="https://wa.me/?text=Read%20this%20article%20from%20Hilal%20Takaful%3A%20https://hilaltakaful.com.ng/blog.html" target="_blank" rel="noopener" class="share-pill sp-wa"><i class="bi bi-whatsapp"></i>WhatsApp</a>
+            <a href="https://www.facebook.com/HilalTakafulNg" target="_blank" rel="noopener" class="share-pill sp-fb"><i class="bi bi-facebook"></i>Facebook</a>
+            <a href="https://www.linkedin.com/company/hilal-takaful-nigeria" target="_blank" rel="noopener" class="share-pill sp-li"><i class="bi bi-linkedin"></i>LinkedIn</a>
+            <a href="https://x.com/hilaltakafulng" target="_blank" rel="noopener" class="share-pill sp-x"><i class="bi bi-twitter-x"></i>X</a>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Close Article</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Single Unified Footer -->
+<footer class="site-footer">
+    <div class="container">
+      <!-- Upper Footer Row -->
+      <div class="row g-4 justify-content-between pb-4">
+        <!-- Col 1: Address -->
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-col-title">Hilal Takaful Nigeria Limited</h5>
+          <p class="footer-text mb-0">
+            Plot A2, Hakeem Balogun Street,<br>
+            Alausa, Ikeja,<br>
+            CBD NECA House<br>
+            100212 - Lagos.<br>
+            Nigeria.
+          </p>
+        </div>
+
+        <!-- Col 2: Call Us -->
+        <div class="col-lg-3 col-md-6">
+          <h5 class="footer-col-title">Call us</h5>
+          <p class="mb-0">
+            <a href="tel:+2349076824451" class="footer-contact-link fw-semibold">
+              + 234 907 682 4451
+            </a>
+          </p>
+        </div>
+
+        <!-- Col 3: Send us a message -->
+        <div class="col-lg-3 col-md-6">
+          <h5 class="footer-col-title">Send us a message</h5>
+          <p class="mb-0">
+            <a href="mailto:enquiries@hilaltakaful.com.ng" class="footer-contact-link">
+              enquiries@hilaltakaful.com.ng
+            </a>
+          </p>
+        </div>
+
+        <!-- Col 4: Follow us -->
+        <div class="col-lg-2 col-md-6">
+          <h5 class="footer-col-title">Follow us</h5>
+          <div class="d-flex gap-2">
+            <a href="https://www.facebook.com/HilalTakafulNg" target="_blank" rel="noopener" class="footer-social-link" aria-label="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://x.com/hilaltakafulng?s=20" target="_blank" rel="noopener" class="footer-social-link" aria-label="X (Twitter)">
+              <i class="bi bi-twitter-x"></i>
+            </a>
+            <a href="https://www.instagram.com/hilaltakafulng?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/hilal-takaful-nigeria" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Middle Footer: Certifications & Quick Links -->
+      <div class="footer-middle-wrap py-3 border-top border-light border-opacity-10">
+        <div class="row align-items-center g-3">
+          <div class="col-lg-6 col-12">
+            <div class="footer-cert-list d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-3 gap-md-4">
+              <a href="privacy-policy.html" title="NDP Act 2023 Statutory Audit Compliance Verified" class="d-inline-block">
+                <img src="assets/images/audit-trustmark.jpg" alt="NDP Act 2023 Audit Statutory Filing - Nigeria Data Protection Commission" class="footer-ndpr-seal">
+              </a>
+              <img src="assets/images/naicom-logo.png" alt="National Insurance Commission NAICOM" class="footer-reg-logo">
+              <img src="assets/images/nia-logo.png" alt="Nigeria Insurers Association NIA" class="footer-reg-logo">
+            </div>
+          </div>
+          <div class="col-lg-6 col-12">
+            <div class="footer-quick-links d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end gap-2 gap-sm-3 small fw-semibold">
+              <a href="index.html" class="footer-nav-link">Home</a>
+              <span class="footer-link-dot">•</span>
+              <a href="company-profile.html" class="footer-nav-link">About us</a>
+              <span class="footer-link-dot">•</span>
+              <a href="general-takaful.html" class="footer-nav-link">Products</a>
+              <span class="footer-link-dot">•</span>
+              <a href="contactus.html" class="footer-nav-link">Contact us</a>
+              <span class="footer-link-dot">•</span>
+              <a href="privacy-policy.html" class="footer-nav-link">Privacy &amp; NDPR</a>
+                <span class="footer-link-dot">•</span>
+                <a href="javascript:void(0)" class="footer-nav-link" id="btnManageCookies">Cookie Settings</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Lemon Olive Bar -->
+    <div class="footer-bottom-bar">
+      <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center text-center text-sm-start gap-2">
+        <div>&copy; <span class="current-year">2026</span> Hilal Takaful Nigeria Limited. All Rights Reserved.</div>
+        <div>Licensed &amp; Regulated by NAICOM</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/components.js"></script>
+</body>
+</html>

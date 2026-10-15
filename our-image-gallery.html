@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>Corporate Photo Gallery | Events, Outreach & Awards | Hilal Takaful</title>
+  <meta name="title" content="Corporate Photo Gallery | Events, Outreach & Awards | Hilal Takaful">
+  <meta name="description" content="Explore photos of Hilal Takaful Nigeria corporate summits, staff awards, community outreach, and industry conferences across Nigeria.">
+  <meta name="keywords" content="hilal takaful gallery, corporate events nigeria, takaful outreach photos, hilal images, islamic finance awards">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="author" content="Hilal Takaful Nigeria Limited">
+  <meta name="theme-color" content="#17123d">
+  <link rel="canonical" href="https://hilaltakaful.com.ng/our-image-gallery.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hilal Takaful Nigeria Limited">
+  <meta property="og:url" content="https://hilaltakaful.com.ng/our-image-gallery.html">
+  <meta property="og:title" content="Corporate Photo Gallery | Events, Outreach & Awards | Hilal Takaful">
+  <meta property="og:description" content="Explore photos of Hilal Takaful Nigeria corporate summits, staff awards, community outreach, and industry conferences across Nigeria.">
+  <meta property="og:image" content="https://hilaltakaful.com.ng/assets/images/hilal-event-celebration.jpg">
+  <meta property="og:locale" content="en_NG">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hilaltakafulng">
+  <meta name="twitter:creator" content="@hilaltakafulng">
+  <meta name="twitter:url" content="https://hilaltakaful.com.ng/our-image-gallery.html">
+  <meta name="twitter:title" content="Corporate Photo Gallery | Events, Outreach & Awards | Hilal Takaful">
+  <meta name="twitter:description" content="Explore photos of Hilal Takaful Nigeria corporate summits, staff awards, community outreach, and industry conferences across Nigeria.">
+  <meta name="twitter:image" content="https://hilaltakaful.com.ng/assets/images/hilal-event-celebration.jpg">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Filter pills */
+    .gf-pill {
+      border: 1.5px solid #DCE3D4; background: #fff; color: #3E4348;
+      font-weight: 600; font-size: 0.85rem; padding: 0.42rem 1.2rem;
+      border-radius: 50rem; cursor: pointer; transition: all 0.25s ease; outline: none;
+    }
+    .gf-pill:hover { border-color: #A8B400; color: #211a52; background: #F4F7D9; }
+    .gf-pill.active {
+      background: #A8B400; border-color: #A8B400; color: #211a52;
+      box-shadow: 0 4px 12px rgba(168,180,0,0.32);
+    }
+
+    /* Gallery cards */
+    .gal-card {
+      position: relative; border-radius: 1.1rem; overflow: hidden;
+      cursor: pointer; background: #17123d;
+      box-shadow: 0 4px 16px rgba(33,26,82,0.07);
+      transition: transform 0.32s ease, box-shadow 0.32s ease;
+      height: 220px;
+    }
+    .gal-card:hover { transform: translateY(-5px); box-shadow: 0 16px 34px rgba(33,26,82,0.14); }
+    .gal-card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.55s cubic-bezier(0.16,1,0.3,1);
+    }
+    .gal-card:hover img { transform: scale(1.08); }
+    .gal-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(33,26,82,0.06) 0%, rgba(33,26,82,0.84) 100%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1rem 1.1rem; color: #fff;
+      opacity: 0; transition: opacity 0.28s ease;
+    }
+    .gal-card:hover .gal-overlay { opacity: 1; }
+    .gal-cat-chip {
+      display: inline-block; font-size: 0.68rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      background: #A8B400; color: #211a52;
+      padding: 0.18rem 0.55rem; border-radius: 0.35rem;
+      margin-bottom: 0.4rem; align-self: flex-start;
+    }
+    .gal-title { font-size: 0.92rem; font-weight: 700; line-height: 1.3; }
+    .gal-zoom {
+      position: absolute; top: 10px; right: 10px;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,0.22); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 0.9rem;
+      opacity: 0; transform: scale(0.7); transition: all 0.22s ease;
+    }
+    .gal-card:hover .gal-zoom { opacity: 1; transform: scale(1); }
+
+    /* Lightbox */
+    #lightboxModal .modal-content {
+      background: rgba(14,10,36,0.97); backdrop-filter: blur(16px);
+      border: 1px solid rgba(168,180,0,0.2); border-radius: 1.4rem; overflow: hidden;
+    }
+    #lightboxModal .modal-header { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1rem 1.4rem; }
+    #lightboxImg { max-height: 65vh; width: 100%; object-fit: contain; display: block; }
+    #lightboxCaption { color: rgba(255,255,255,0.82); font-size: 0.92rem; font-weight: 600; text-align: center; padding: 0.85rem 1.4rem 1rem; }
+    #lightboxCatLabel {
+      display: inline-block; background: #A8B400; color: #211a52;
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 0.18rem 0.6rem; border-radius: 0.35rem; margin-bottom: 0.4rem;
+    }
+    .lb-nav-btn {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(255,255,255,0.14); color: #fff; border: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.05rem; cursor: pointer; transition: all 0.2s ease;
+    }
+    .lb-nav-btn:hover { background: #A8B400; color: #211a52; }
+  </style>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="shortcut icon" type="image/png" href="assets/images/logo.png">
+  <link rel="apple-touch-icon" href="assets/images/logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo.png">
+
+</head>
+<body>
+
+  <div id="navbar-placeholder">
+
+  <!-- Top Contact & Information Bar -->
+  <div class="top-contact-bar d-none d-md-block">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-4">
+          <span><i class="bi bi-geo-alt me-1 text-lemon"></i> CBD NECA House, Alausa, Ikeja, Lagos</span>
+          <a href="tel:+2349076824451"><i class="bi bi-telephone me-1 text-lemon"></i> +234 907 682 4451</a>
+          <a href="mailto:enquiries@hilaltakaful.com.ng"><i class="bi bi-envelope me-1 text-lemon"></i> enquiries@hilaltakaful.com.ng</a>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <span class="small text-muted">Follow us:</span>
+          <a href="https://www.facebook.com/HilalTakafulNg" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://x.com/hilaltakafulng?s=20" target="_blank" rel="noopener" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://www.instagram.com/hilaltakafulng?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/hilal-takaful-nigeria" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation -->
+  <nav class="navbar navbar-expand-lg main-navbar">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="assets/images/logo.png" alt="Hilal Takaful Nigeria Limited">
+      </a>
+      
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item">
+            <a class="nav-link " href="index.html">Home</a>
+          </li>
+          
+          <!-- Products Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Products
+            </a>
+            <ul class="dropdown-menu shadow-sm">
+              <li><a class="dropdown-item " href="general-takaful.html">General Takaful</a></li>
+              <li><a class="dropdown-item " href="family-takaful.html">Family Takaful</a></li>
+            </ul>
+          </li>
+
+          <!-- About Us Dropdown with Financial Reports -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              About Us
+            </a>
+            <ul class="dropdown-menu shadow-sm">
+              <li><a class="dropdown-item " href="company-profile.html">Company Profile</a></li>
+              <li><a class="dropdown-item " href="board-of-directors.html">Board of Directors</a></li>
+              <li><a class="dropdown-item " href="advisory-council.html">Advisory Council</a></li>
+              <li><a class="dropdown-item " href="management-team.html">Management Team</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item " href="investors-relation.html"><i class="bi bi-file-earmark-bar-graph me-1 text-lemon"></i> Financial Reports</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link " href="blog.html">Blog</a>
+          </li>
+
+          <!-- Event Gallery -->
+          <li class="nav-item">
+            <a class="nav-link active" href="our-image-gallery.html">Event Gallery</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link " href="contactus.html">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  </div>
+
+  <!-- Hero Header Section -->
+  <section class="py-5 bg-light-soft border-bottom">
+    <div class="container py-4 text-center">
+      <span class="badge bg-white text-lemon border border-lemon px-3 py-2 rounded-pill fw-semibold mb-3 shadow-sm">
+        <i class="bi bi-images me-1"></i> Corporate Gallery
+      </span>
+      <h1 class="display-4 fw-bold text-navy mb-2">Image Gallery</h1>
+      <p class="lead text-muted mx-auto mb-3" style="max-width:680px;">
+        From staff excellence nights to industry summits and community outreach — every photograph captures the spirit that makes Hilal Takaful a trusted family.
+      </p>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb justify-content-center mb-0 small">
+          <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-navy fw-semibold">Home</a></li>
+          <li class="breadcrumb-item active text-lemon fw-bold" aria-current="page">Gallery</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="py-5 bg-white">
+    <div class="container py-3">
+
+      <!-- Filter pills -->
+      <div class="d-flex flex-wrap gap-2 justify-content-center mb-5" id="galleryFilters">
+        <button class="gf-pill active" data-filter="all">All Photos</button>
+        <button class="gf-pill" data-filter="staff">Staff Excellence</button>
+        <button class="gf-pill" data-filter="corporate">Corporate Events</button>
+        <button class="gf-pill" data-filter="outreach">Community Outreach</button>
+        <button class="gf-pill" data-filter="leadership">Leadership &amp; Advisory</button>
+      </div>
+
+      <!-- Photo grid -->
+      <div class="row g-3" id="galleryGrid">
+
+        <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="staff">
+          <div class="gal-card" onclick="openLightbox('assets/images/hilal-event-awards.jpg','Staff Appreciation &amp; Awards Night','Staff Excellence')">
+            <img src="assets/images/hilal-event-awards.jpg" alt="Staff Awards Night">
+            <div class="gal-zoom"><i class="bi bi-zoom-in"></i></div>
+            <div class="gal-overlay">
+              <span class="gal-cat-chip">Staff Excellence</span>
+              <p class="gal-title mb-0">Staff Appreciation &amp; Awards Night</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="corporate">
+          <div class="gal-card" onclick="openLightbox('assets/images/gallery-staff-1.jpg','Annual General Meeting &amp; Stakeholder Forum','Corporate Events')">
+            <img src="assets/images/gallery-staff-1.jpg" alt="AGM & Stakeholder Forum">
+            <div class="gal-zoom"><i class="bi bi-zoom-in"></i></div>
+            <div class="gal-overlay">
+              <span class="gal-cat-chip">Corporate Events</span>
+              <p class="gal-title mb-0">Annual General Meeting &amp; Stakeholder Forum</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="staff">
+          <div class="gal-card" onclick="openLightbox('assets/images/gallery-staff-3.jpg','Staff Team Building &amp; Camaraderie Session','Staff Excellence')">
+            <img src="assets/images/gallery-staff-3.jpg" alt="Team Building">
+            <div class="gal-zoom"><i class="bi bi-zoom-in"></i></div>
+            <div class="gal-overlay">
+              <span class="gal-cat-chip">Staff Excellence</span>
+              <p class="gal-title mb-0">Team Building &amp; Camaraderie Session</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="leadership">
+          <div class="gal-card" onclick="openLightbox('assets/images/hilal-event-staff.jpg','Executive Leadership &amp; Advisory Session','Leadership &amp; Advisory')">
+            <img src="assets/images/hilal-event-staff.jpg" alt="Leadership Session">
+            <div class="gal-zoom"><i class="bi bi-zoom-in"></i></div>
+            <div class="gal-overlay">
+              <span class="gal-cat-chip">Leadership &amp; Advisory</span>
+              <p class="gal-title mb-0">Executive Leadership &amp; Advisory Session</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="corporate">
+          <div class="gal-card" onclick="openLightbox('assets/images/gallery-staff-4.jpg','Non-Interest Financial Inclusion Summit','Corporate Events')">
+            <img src="assets/images/gallery-staff-4.jpg" alt="Financial Inclusion Summit">
+            <div class="gal-zoom"><i class="bi bi-zoom-in"></i></div>
+            <div class="gal-overlay">
+              <span class="gal-cat-chip">Corporate Events</span>
+              <p class="gal-title mb-0">Non-Interest Financial Inclusion Summit</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="outreach">
+          <div class="gal-card" onclick="openLightbox('assets/images/hajj-umrah.jpg','Pilgrim Care &amp; Hajj Orientation Session','Community Outreach')">
+            <img src="assets/images/hajj-umrah.jpg" alt="Pilgrim Care Orientation">
+            <div class="gal-zoom"><i class="bi bi-zoom-in"></i></div>
+            <div class="gal-overlay">
+              <span class="gal-cat-chip">Community Outreach</span>
+              <p class="gal-title mb-0">Pilgrim Care &amp; Hajj Orientation Session</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="staff">
+          <div class="gal-card" onclick="openLightbox('assets/images/gallery-staff-5.jpg','Long-Service &amp; Excellence Awards Ceremony','Staff Excellence')">
+            <img src="assets/images/gallery-staff-5.jpg" alt="Excellence Awards">
+            <div class="gal-zoom"><i class="bi bi-zoom-in"></i></div>
+            <div class="gal-overlay">
+              <span class="gal-cat-chip">Staff Excellence</span>
+              <p class="gal-title mb-0">Long-Service &amp; Excellence Awards</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="corporate">
+          <div class="gal-card" onclick="openLightbox('assets/images/gallery-staff-6.jpg','NAICOM Regulatory &amp; Compliance Forum','Corporate Events')">
+            <img src="assets/images/gallery-staff-6.jpg" alt="NAICOM Forum">
+            <div class="gal-zoom"><i class="bi bi-zoom-in"></i></div>
+            <div class="gal-overlay">
+              <span class="gal-cat-chip">Corporate Events</span>
+              <p class="gal-title mb-0">NAICOM Regulatory &amp; Compliance Forum</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="outreach">
+          <div class="gal-card" onclick="openLightbox('assets/images/hilal-event-celebration.jpg','Hilal Takaful Community Celebration','Community Outreach')">
+            <img src="assets/images/hilal-event-celebration.jpg" alt="Community Celebration">
+            <div class="gal-zoom"><i class="bi bi-zoom-in"></i></div>
+            <div class="gal-overlay">
+              <span class="gal-cat-chip">Community Outreach</span>
+              <p class="gal-title mb-0">Hilal Takaful Community Celebration</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="leadership">
+          <div class="gal-card" onclick="openLightbox('assets/images/about-masthead.jpg','Shariah Advisory Council Strategic Review','Leadership &amp; Advisory')">
+            <img src="assets/images/about-masthead.jpg" alt="Shariah Advisory">
+            <div class="gal-zoom"><i class="bi bi-zoom-in"></i></div>
+            <div class="gal-overlay">
+              <span class="gal-cat-chip">Leadership &amp; Advisory</span>
+              <p class="gal-title mb-0">Shariah Advisory Council Strategic Review</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="staff">
+          <div class="gal-card" onclick="openLightbox('assets/images/gallery-staff-2.jpg','Staff Retreat &amp; Professional Development','Staff Excellence')">
+            <img src="assets/images/gallery-staff-2.jpg" alt="Staff Retreat">
+            <div class="gal-zoom"><i class="bi bi-zoom-in"></i></div>
+            <div class="gal-overlay">
+              <span class="gal-cat-chip">Staff Excellence</span>
+              <p class="gal-title mb-0">Staff Retreat &amp; Professional Development</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="corporate">
+          <div class="gal-card" onclick="openLightbox('assets/images/event-banner.jpg','Hilal Takaful Corporate Milestone Gala','Corporate Events')">
+            <img src="assets/images/event-banner.jpg" alt="Corporate Milestone Gala">
+            <div class="gal-zoom"><i class="bi bi-zoom-in"></i></div>
+            <div class="gal-overlay">
+              <span class="gal-cat-chip">Corporate Events</span>
+              <p class="gal-title mb-0">Hilal Takaful Corporate Milestone Gala</p>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /row -->
+
+      <div id="galleryEmpty" class="text-center py-5" style="display:none">
+        <i class="bi bi-images text-muted" style="font-size:3rem;opacity:0.3"></i>
+        <p class="text-muted mt-3">No photos in this category yet.</p>
+      </div>
+
+</div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <div class="d-flex align-items-center gap-2">
+            <button class="lb-nav-btn" id="lbPrev" aria-label="Previous"><i class="bi bi-chevron-left"></i></button>
+            <button class="lb-nav-btn" id="lbNext" aria-label="Next"><i class="bi bi-chevron-right"></i></button>
+          </div>
+          <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-0">
+          <img id="lightboxImg" src="" alt="Gallery photo">
+        </div>
+        <div id="lightboxCaption">
+          <div id="lightboxCatLabel"></div>
+          <div id="lightboxCaptionText"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Single Unified Footer -->
+<footer class="site-footer">
+    <div class="container">
+      <!-- Upper Footer Row -->
+      <div class="row g-4 justify-content-between pb-4">
+        <!-- Col 1: Address -->
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-col-title">Hilal Takaful Nigeria Limited</h5>
+          <p class="footer-text mb-0">
+            Plot A2, Hakeem Balogun Street,<br>
+            Alausa, Ikeja,<br>
+            CBD NECA House<br>
+            100212 - Lagos.<br>
+            Nigeria.
+          </p>
+        </div>
+
+        <!-- Col 2: Call Us -->
+        <div class="col-lg-3 col-md-6">
+          <h5 class="footer-col-title">Call us</h5>
+          <p class="mb-0">
+            <a href="tel:+2349076824451" class="footer-contact-link fw-semibold">
+              + 234 907 682 4451
+            </a>
+          </p>
+        </div>
+
+        <!-- Col 3: Send us a message -->
+        <div class="col-lg-3 col-md-6">
+          <h5 class="footer-col-title">Send us a message</h5>
+          <p class="mb-0">
+            <a href="mailto:enquiries@hilaltakaful.com.ng" class="footer-contact-link">
+              enquiries@hilaltakaful.com.ng
+            </a>
+          </p>
+        </div>
+
+        <!-- Col 4: Follow us -->
+        <div class="col-lg-2 col-md-6">
+          <h5 class="footer-col-title">Follow us</h5>
+          <div class="d-flex gap-2">
+            <a href="https://www.facebook.com/HilalTakafulNg" target="_blank" rel="noopener" class="footer-social-link" aria-label="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://x.com/hilaltakafulng?s=20" target="_blank" rel="noopener" class="footer-social-link" aria-label="X (Twitter)">
+              <i class="bi bi-twitter-x"></i>
+            </a>
+            <a href="https://www.instagram.com/hilaltakafulng?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/hilal-takaful-nigeria" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Middle Footer: Certifications & Quick Links -->
+      <div class="footer-middle-wrap py-3 border-top border-light border-opacity-10">
+        <div class="row align-items-center g-3">
+          <div class="col-lg-6 col-12">
+            <div class="footer-cert-list d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-3 gap-md-4">
+              <a href="privacy-policy.html" title="NDP Act 2023 Statutory Audit Compliance Verified" class="d-inline-block">
+                <img src="assets/images/audit-trustmark.jpg" alt="NDP Act 2023 Audit Statutory Filing - Nigeria Data Protection Commission" class="footer-ndpr-seal">
+              </a>
+              <img src="assets/images/naicom-logo.png" alt="National Insurance Commission NAICOM" class="footer-reg-logo">
+              <img src="assets/images/nia-logo.png" alt="Nigeria Insurers Association NIA" class="footer-reg-logo">
+            </div>
+          </div>
+          <div class="col-lg-6 col-12">
+            <div class="footer-quick-links d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end gap-2 gap-sm-3 small fw-semibold">
+              <a href="index.html" class="footer-nav-link">Home</a>
+              <span class="footer-link-dot">•</span>
+              <a href="company-profile.html" class="footer-nav-link">About us</a>
+              <span class="footer-link-dot">•</span>
+              <a href="general-takaful.html" class="footer-nav-link">Products</a>
+              <span class="footer-link-dot">•</span>
+              <a href="contactus.html" class="footer-nav-link">Contact us</a>
+              <span class="footer-link-dot">•</span>
+              <a href="privacy-policy.html" class="footer-nav-link">Privacy &amp; NDPR</a>
+                <span class="footer-link-dot">•</span>
+                <a href="javascript:void(0)" class="footer-nav-link" id="btnManageCookies">Cookie Settings</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Lemon Olive Bar -->
+    <div class="footer-bottom-bar">
+      <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center text-center text-sm-start gap-2">
+        <div>&copy; <span class="current-year">2026</span> Hilal Takaful Nigeria Limited. All Rights Reserved.</div>
+        <div>Licensed &amp; Regulated by NAICOM</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/components.js"></script>
+
+  <script>
+    // ── Filter ──────────────────────────────────
+    const pills  = document.querySelectorAll('.gf-pill');
+    const items  = document.querySelectorAll('.gal-item');
+    const empty  = document.getElementById('galleryEmpty');
+
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const filter = pill.dataset.filter;
+        let visible = 0;
+        items.forEach(item => {
+          const show = filter === 'all' || item.dataset.cat === filter;
+          item.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        empty.style.display = visible === 0 ? 'block' : 'none';
+      });
+    });
+
+    // ── Lightbox ─────────────────────────────────
+    let currentIndex = 0;
+
+    function openLightbox(src, caption, category) {
+      const all = [...items];
+      currentIndex = all.findIndex(i => i.querySelector('img').getAttribute('src') === src);
+      if (currentIndex < 0) currentIndex = 0;
+      showSlide(currentIndex);
+      new bootstrap.Modal(document.getElementById('lightboxModal')).show();
+    }
+
+    function showSlide(idx) {
+      const all = [...items];
+      const card = all[idx];
+      document.getElementById('lightboxImg').src = card.querySelector('img').getAttribute('src');
+      document.getElementById('lightboxCaptionText').textContent = card.querySelector('.gal-title').textContent;
+      document.getElementById('lightboxCatLabel').textContent = card.querySelector('.gal-cat-chip').textContent;
+    }
+
+    document.getElementById('lbPrev').addEventListener('click', () => {
+      const all = [...items];
+      currentIndex = (currentIndex - 1 + all.length) % all.length;
+      showSlide(currentIndex);
+    });
+
+    document.getElementById('lbNext').addEventListener('click', () => {
+      const all = [...items];
+      currentIndex = (currentIndex + 1) % all.length;
+      showSlide(currentIndex);
+    });
+  </script>
+</body>
+</html>
