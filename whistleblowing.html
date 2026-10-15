@@ -3,161 +3,526 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Whistleblowing Policy & Reporting | Hilal Takaful Nigeria</title>
-  <link rel="icon" type="image/png" href="assets/images/favicon.png">
-  <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
+  <title>Whistleblowing Portal | Hilal Takaful Insurance Company Limited</title>
+  <meta name="description" content="Confidential whistleblowing portal for reporting unethical conduct, financial impropriety, regulatory violations, or Shariah breaches at Hilal Takaful Nigeria.">
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
   <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
   <link rel="apple-touch-icon" href="assets/images/favicon.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .wb-card {
+      background: #ffffff;
+      border: 1px solid #eaefe5;
+      border-radius: 1.25rem;
+      box-shadow: 0 10px 30px rgba(33, 26, 82, 0.06);
+    }
+    .wb-section-heading {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ht-lemon-dark, #747c00);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(168, 180, 0, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .wb-label {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--ht-navy, #211a52);
+      margin-bottom: 0.4rem;
+    }
+    .wb-label .required {
+      color: #dc3545;
+      font-weight: 700;
+    }
+    .form-control, .form-select {
+      border-radius: 0.65rem;
+      border: 1.5px solid #dce2d6;
+      font-size: 0.95rem;
+      padding: 0.65rem 0.95rem;
+      transition: all 0.25s ease;
+      background-color: #fdfdfd;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: var(--ht-lemon, #a8b400);
+      box-shadow: 0 0 0 3px rgba(168, 180, 0, 0.15);
+      background-color: #ffffff;
+      outline: none;
+    }
+    .wb-file-box {
+      background: #fbfcf9;
+      border: 1.5px dashed #cfd8c7;
+      border-radius: 0.75rem;
+      padding: 0.85rem 1.15rem;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .wb-file-box:hover {
+      border-color: var(--ht-lemon, #a8b400);
+      background: #f7f9f3;
+    }
+    .wb-anon-btn-group .btn {
+      font-weight: 600;
+      padding: 0.5rem 1.75rem;
+      border-radius: 50rem;
+      border: 1.5px solid #cfd8c7;
+      color: var(--ht-navy, #211a52);
+      transition: all 0.2s ease;
+    }
+    .wb-anon-btn-group .btn-check:checked + .btn {
+      background-color: var(--ht-navy, #211a52);
+      border-color: var(--ht-navy, #211a52);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(33, 26, 82, 0.2);
+    }
+    .wb-captcha-box {
+      background: #f4f7ee;
+      border: 1.5px solid #dce5cf;
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+    }
+    .wb-captcha-math {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--ht-navy, #211a52);
+      background: #ffffff;
+      padding: 0.35rem 0.85rem;
+      border-radius: 0.5rem;
+      border: 1px solid #dce2d6;
+      display: inline-block;
+      letter-spacing: 0.1em;
+    }
+    .wb-submit-btn {
+      background: var(--ht-navy, #211a52);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 0.85rem 2.75rem;
+      border-radius: 50rem;
+      border: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(33, 26, 82, 0.15);
+    }
+    .wb-submit-btn:hover {
+      background: var(--ht-lemon-dark, #747c00);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(33, 26, 82, 0.25);
+    }
+    .wb-google-form-card {
+      background: linear-gradient(135deg, rgba(33, 26, 82, 0.05) 0%, rgba(168, 180, 0, 0.1) 100%);
+      border: 1.5px solid rgba(168, 180, 0, 0.3);
+      border-radius: 1rem;
+      padding: 1.25rem 1.5rem;
+    }
+    .confidential-card {
+      background: #f6f8f2;
+      border-left: 4px solid var(--ht-lemon, #a8b400);
+      border-radius: 0.5rem;
+      padding: 1rem 1.25rem;
+    }
+  </style>
 </head>
 <body class="bg-light">
-  <div id="navbar-placeholder"></div>
+  <!-- Top Bar -->
+  <div class="top-bar py-2">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <div class="d-flex align-items-center gap-4 text-white-50 small">
+        <span><i class="bi bi-geo-alt-fill text-lemon me-1"></i> CBD NECA House, Ikeja, Lagos</span>
+        <span class="d-none d-md-inline"><i class="bi bi-shield-check text-lemon me-1"></i> NAICOM Regulated &amp; 100% Shariah Compliant</span>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <a href="tel:+2349076824451" class="text-white-50 text-decoration-none small hover-lemon">
+          <i class="bi bi-telephone-fill text-lemon me-1"></i> +234 907 682 4451
+        </a>
+        <span class="text-white-50">|</span>
+        <a href="mailto:enquiries@hilaltakaful.com.ng" class="text-white-50 text-decoration-none small hover-lemon">
+          <i class="bi bi-envelope-fill text-lemon me-1"></i> enquiries@hilaltakaful.com.ng
+        </a>
+      </div>
+    </div>
+  </div>
 
+  <!-- Main Navbar -->
+  <nav class="navbar navbar-expand-lg main-navbar">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="assets/images/logo.png" alt="Hilal Takaful Nigeria Limited">
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
+            <ul class="dropdown-menu shadow-sm">
+              <li><a class="dropdown-item" href="general-takaful.html"><i class="bi bi-shield-check text-lemon me-2"></i>General Takaful</a></li>
+              <li><a class="dropdown-item" href="family-takaful.html"><i class="bi bi-people text-lemon me-2"></i>Family Takaful</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Events</a>
+            <ul class="dropdown-menu shadow-sm">
+              <li><a class="dropdown-item" href="our-image-gallery.html"><i class="bi bi-images text-lemon me-2"></i>Our Image Gallery</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
+            <ul class="dropdown-menu shadow-sm">
+              <li><a class="dropdown-item" href="company-profile.html"><i class="bi bi-building text-lemon me-2"></i>Company Profile</a></li>
+              <li><a class="dropdown-item" href="board-of-directors.html"><i class="bi bi-person-badge text-lemon me-2"></i>Board of Directors</a></li>
+              <li><a class="dropdown-item" href="advisory-council.html"><i class="bi bi-award text-lemon me-2"></i>Advisory Council</a></li>
+              <li><a class="dropdown-item" href="management-team.html"><i class="bi bi-people-fill text-lemon me-2"></i>Management Team</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="blog.html">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contactus.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="investors-relation.html">Financial</a>
+          </li>
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0 d-flex gap-2">
+            <a href="login.html" class="btn btn-outline-lemon rounded-pill px-3 py-1 btn-sm"><i class="bi bi-person me-1"></i>Sign In</a>
+            <a href="contactus.html" class="btn btn-lemon rounded-pill px-3 py-1 btn-sm"><i class="bi bi-headset me-1"></i>Get Quote</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Header -->
   <section class="py-5 text-white" style="background: linear-gradient(135deg, #17123d 0%, #2a2068 100%);">
     <div class="container py-4 text-center">
       <span class="badge bg-white text-lemon border border-lemon px-3 py-2 rounded-pill fw-bold mb-3 shadow-sm">
-        <i class="bi bi-shield-lock-fill me-1"></i> Amanah & Ethical Integrity
+        <i class="bi bi-shield-lock-fill me-1"></i> Amanah &amp; Ethical Integrity
       </span>
-      <h1 class="display-4 fw-bold text-white mb-2">Whistleblowing Channel</h1>
-      <p class="lead text-white-50 mx-auto" style="max-width: 700px;">
-        A secure, confidential, and anonymous channel for reporting unethical conduct, financial impropriety, regulatory non-compliance, or Shariah breaches.
+      <h1 class="display-4 fw-bold text-white mb-2">Whistleblowing Portal</h1>
+      <p class="lead text-white-50 mx-auto" style="max-width: 740px;">
+        A secure, confidential, and protected mechanism to report suspected misconduct, financial fraud, regulatory violations, or Shariah breaches.
       </p>
     </div>
   </section>
 
-  <main class="py-5">
+  <!-- Main Content Area -->
+  <main class="py-5" style="background: #f4f6ef;">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white mb-4">
-            <h3 class="fw-bold text-navy mb-3">Our Whistleblowing Commitment</h3>
-            <p class="text-muted lh-lg">
-              At Hilal Takaful Nigeria Limited, upholding the highest standards of transparency, integrity, and Shariah compliance is our sacred responsibility (Amanah). We provide a safe, protected reporting mechanism for staff, participants, vendors, and the general public to report any concern without fear of victimization or retaliation.
-            </p>
-            <div class="alert alert-warning border-0 rounded-3 p-3 d-flex align-items-center gap-3 mb-4">
-              <i class="bi bi-info-circle-fill fs-3 text-warning"></i>
-              <div class="small">
-                <strong>Confidentiality Guarantee:</strong> All disclosures submitted through this portal are treated with absolute confidentiality. Reports are received directly by the Head of Internal Audit and the Board Audit & Governance Committee.
-              </div>
-            </div>
+        <div class="col-lg-9 col-xl-8">
 
-            <div class="p-4 rounded-3 border bg-light text-center">
-              <i class="bi bi-envelope-shield display-4 text-lemon mb-2 d-block"></i>
-              <h5 class="fw-bold text-navy mb-2">Direct Whistleblower Reporting</h5>
-              <p class="small text-muted mb-3">You can submit secure disclosures directly to our dedicated audit and compliance team:</p>
-              <div class="fw-bold text-navy fs-6 mb-1">
-                <i class="bi bi-envelope-at me-2 text-lemon"></i>whistleblower@hilaltakaful.com.ng
-              </div>
-              <div class="small text-muted">Or call our dedicated toll-free audit hotline: +234 907 682 4451</div>
+          <!-- Confidentiality Notice -->
+          <div class="confidential-card mb-4 d-flex align-items-start gap-3">
+            <i class="bi bi-shield-check text-lemon fs-3 flex-shrink-0 mt-1"></i>
+            <div>
+              <h6 class="fw-bold text-navy mb-1">Our Confidentiality &amp; Non-Retaliation Commitment</h6>
+              <p class="small text-muted mb-0">
+                Hilal Takaful Insurance Company Limited guarantees full statutory protection to all whistleblowers. Disclosures submitted through this portal are received directly by the Head of Internal Audit and the Board Audit Committee. You will never suffer victimization, adverse discrimination, or retaliation for reporting in good faith.
+              </p>
             </div>
           </div>
+
+          <!-- Google Form Alternative Option Banner -->
+          <div class="wb-google-form-card mb-4 d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3">
+            <div>
+              <h6 class="fw-bold text-navy mb-1"><i class="bi bi-google me-2 text-lemon"></i>Prefer Submitting via Google Forms?</h6>
+              <p class="small text-muted mb-0">You can also submit this report directly through our secure Google Forms interface if preferred.</p>
+            </div>
+            <a href="https://forms.google.com" target="_blank" rel="noopener" class="btn btn-outline-lemon rounded-pill px-4 py-2 btn-sm fw-bold flex-shrink-0">
+              Open Google Form <i class="bi bi-box-arrow-up-right ms-1"></i>
+            </a>
+          </div>
+
+          <!-- WHISTLEBLOWING FORM CARD -->
+          <div class="wb-card p-4 p-md-5">
+            <div class="text-center mb-4">
+              <h3 class="fw-bold text-navy mb-2">Whistleblower Incident Report</h3>
+              <p class="text-muted small">Please complete the form below with as much specific detail as possible.</p>
+            </div>
+
+            <form id="whistleblowingReportForm" novalidate>
+
+              <!-- Section 1: Anonymity -->
+              <div class="mb-4">
+                <div class="wb-section-heading">
+                  <i class="bi bi-incognito"></i> 1. Anonymity Preference
+                </div>
+                <label class="wb-label d-block mb-2">Do you want to be anonymous? <span class="required">*</span></label>
+                <div class="wb-anon-btn-group d-flex gap-3">
+                  <input type="radio" class="btn-check" name="anonymityChoice" id="anonNo" value="NO" checked>
+                  <label class="btn" for="anonNo"><i class="bi bi-person-fill me-1"></i> NO</label>
+
+                  <input type="radio" class="btn-check" name="anonymityChoice" id="anonYes" value="YES">
+                  <label class="btn" for="anonYes"><i class="bi bi-eye-slash-fill me-1"></i> YES</label>
+                </div>
+                <div id="anonMessage" class="small text-success mt-2 d-none">
+                  <i class="bi bi-shield-lock-fill me-1"></i> You have chosen to remain completely anonymous. Your identity will not be requested or tracked.
+                </div>
+              </div>
+
+              <!-- Section 2: Reporter Details (Conditionally Displayed) -->
+              <div id="reporterDetailsSection">
+                <div class="wb-section-heading">
+                  <i class="bi bi-person-lines-fill"></i> 2. Please Provide Your Details
+                </div>
+                <div class="row g-3 mb-4">
+                  <div class="col-md-12">
+                    <label class="wb-label" for="reporterFullName">Full Name <span class="required">*</span></label>
+                    <input type="text" class="form-control" id="reporterFullName" name="reporterFullName" placeholder="e.g. Adebayo Musa" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="wb-label" for="reporterEmail">Email <span class="required">*</span></label>
+                    <input type="email" class="form-control" id="reporterEmail" name="reporterEmail" placeholder="e.g. adebayo@example.com" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="wb-label" for="reporterMobile">Mobile Number <span class="required">*</span></label>
+                    <input type="tel" class="form-control" id="reporterMobile" name="reporterMobile" placeholder="e.g. +234 803 123 4567" required>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 3: Subject Being Reported -->
+              <div class="wb-section-heading">
+                <i class="bi bi-person-exclamation"></i> 3. Details of Whom You Are Reporting
+              </div>
+              <div class="row g-3 mb-4">
+                <div class="col-md-12">
+                  <label class="wb-label" for="subjectName">Officer / Staff Name <span class="required">*</span></label>
+                  <input type="text" class="form-control" id="subjectName" name="subjectName" placeholder="Full name of staff member, agent, or officer" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="wb-label" for="subjectEmail">Officer / Staff Email</label>
+                  <input type="email" class="form-control" id="subjectEmail" name="subjectEmail" placeholder="Official or known email address">
+                </div>
+                <div class="col-md-6">
+                  <label class="wb-label" for="subjectMobile">Officer / Staff Mobile</label>
+                  <input type="tel" class="form-control" id="subjectMobile" name="subjectMobile" placeholder="Contact telephone number if known">
+                </div>
+                <div class="col-md-12">
+                  <label class="wb-label" for="natureConduct">Nature of Conduct <span class="required">*</span></label>
+                  <select class="form-select" id="natureConduct" name="natureConduct" required>
+                    <option value="" disabled selected>-- Select Nature of Conduct --</option>
+                    <option value="Financial Fraud / Embezzlement">Financial Fraud / Embezzlement / Theft</option>
+                    <option value="Bribery / Extortion / Kickbacks">Bribery / Extortion / Illegal Kickbacks</option>
+                    <option value="Shariah Non-Compliance">Shariah Non-Compliance / Prohibited Investments</option>
+                    <option value="Regulatory Breach / NAICOM Violation">Regulatory Breach / Statutory / NAICOM Non-Compliance</option>
+                    <option value="Unauthorized Third-Party Account Solicitation">Unauthorized Bank Account Payment Demands</option>
+                    <option value="Conflict of Interest">Conflict of Interest / Undisclosed Personal Benefit</option>
+                    <option value="Data Protection & NDPR Breach">Data Privacy / NDPR / Confidentiality Violation</option>
+                    <option value="Workplace Harassment / Abuse of Office">Workplace Harassment / Bullying / Abuse of Power</option>
+                    <option value="Other">Other Unethical Conduct (Specify in Remarks)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Section 4: Incident Specifics -->
+              <div class="wb-section-heading">
+                <i class="bi bi-geo-alt"></i> 4. Incident Specifics &amp; Collaborators
+              </div>
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label class="wb-label" for="incidentLocation">Location <span class="required">*</span></label>
+                  <input type="text" class="form-control" id="incidentLocation" name="incidentLocation" placeholder="e.g. Alausa Head Office, Ikeja, Lagos" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="wb-label" for="eventDate">Estimated Date of Event <span class="required">*</span></label>
+                  <input type="date" class="form-control" id="eventDate" name="eventDate" required>
+                </div>
+                <div class="col-md-12">
+                  <label class="wb-label" for="collaborators">Any other collaborator? Please specify with names:</label>
+                  <input type="text" class="form-control" id="collaborators" name="collaborators" placeholder="List names, positions, or external entities involved">
+                </div>
+                <div class="col-md-12">
+                  <label class="wb-label" for="remarks">Remarks / Comment <span class="required">*</span></label>
+                  <textarea class="form-control" id="remarks" name="remarks" rows="5" placeholder="Provide a detailed, chronological factual account of the event, including what transpired, amounts involved (if any), and how it occurred..." required></textarea>
+                </div>
+              </div>
+
+              <!-- Section 5: Evidence & Attachments -->
+              <div class="wb-section-heading">
+                <i class="bi bi-paperclip"></i> 5. Evidence &amp; Supporting Documents
+              </div>
+              <p class="small text-muted mb-3">
+                Do you have any evidence or supporting document(s)? Attach document(s) below (Accepted formats: PDF, JPG, PNG, DOCX — Max 10MB per file):
+              </p>
+
+              <div class="row g-3 mb-4">
+                <div class="col-md-12">
+                  <label class="wb-label" for="document1">Document 1</label>
+                  <div class="wb-file-box">
+                    <input type="file" class="form-control border-0 bg-transparent p-0" id="document1" name="document1" accept=".pdf,.jpg,.jpeg,.png,.docx">
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <label class="wb-label" for="document2">Document 2</label>
+                  <div class="wb-file-box">
+                    <input type="file" class="form-control border-0 bg-transparent p-0" id="document2" name="document2" accept=".pdf,.jpg,.jpeg,.png,.docx">
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <label class="wb-label" for="document3">Document 3</label>
+                  <div class="wb-file-box">
+                    <input type="file" class="form-control border-0 bg-transparent p-0" id="document3" name="document3" accept=".pdf,.jpg,.jpeg,.png,.docx">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 6: Human Verification -->
+              <div class="wb-section-heading">
+                <i class="bi bi-shield-check"></i> 6. Security Verification
+              </div>
+              <div class="wb-captcha-box mb-4">
+                <label class="wb-label mb-2" for="captchaAnswer">Please confirm you are human: <span class="required">*</span></label>
+                <div class="d-flex align-items-center gap-3 flex-wrap">
+                  <span class="wb-captcha-math">10 + 20 =</span>
+                  <div style="max-width: 140px;">
+                    <input type="number" class="form-control form-control-lg text-center fw-bold" id="captchaAnswer" name="captchaAnswer" placeholder="?" required>
+                  </div>
+                  <div id="captchaFeedback" class="small text-danger d-none fw-semibold">
+                    <i class="bi bi-x-circle-fill me-1"></i> Incorrect answer. 10 + 20 = 30.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submit Buttons & Status -->
+              <div id="submissionAlert" class="alert d-none mb-4" role="alert"></div>
+
+              <div class="text-center pt-2">
+                <button type="submit" id="btnSubmitReport" class="wb-submit-btn">
+                  <i class="bi bi-send-fill me-2"></i> Submit Confidential Report
+                </button>
+                <div class="small text-muted mt-3">
+                  <i class="bi bi-lock-fill text-lemon me-1"></i> 256-Bit SSL Encrypted Submission to Hilal Takaful Audit Committee
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- Direct Audit Committee Contact Card -->
+          <div class="card border-0 shadow-sm rounded-4 p-4 mt-4 bg-white text-center">
+            <h6 class="fw-bold text-navy mb-2"><i class="bi bi-envelope-at me-2 text-lemon"></i>Direct Audit &amp; Compliance Channel</h6>
+            <p class="small text-muted mb-2">You may also reach our internal audit executives directly via our designated whistleblower channel:</p>
+            <div class="fw-bold text-navy">
+              <a href="mailto:whistleblower@hilaltakaful.com.ng" class="text-decoration-none text-navy hover-lemon">
+                <i class="bi bi-envelope me-1 text-lemon"></i> whistleblower@hilaltakaful.com.ng
+              </a>
+              <span class="mx-2 text-muted">|</span>
+              <a href="tel:+2349076824451" class="text-decoration-none text-navy hover-lemon">
+                <i class="bi bi-telephone me-1 text-lemon"></i> +234 907 682 4451
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </main>
 
-  <div id="footer-placeholder">
-
   <!-- Single Unified Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <!-- Upper Footer Row -->
-      <div class="row g-4 justify-content-between pb-4">
-        <!-- Col 1: Address & About -->
-        <div class="col-lg-4 col-md-6">
-          <h5 class="footer-col-title">Hilal Takaful Nigeria Limited</h5>
-          <p class="footer-text mb-3">
-            Plot A2, Hakeem Balogun Street,<br>
-            Alausa, Ikeja,<br>
-            CBD NECA House<br>
-            100212 - Lagos, Nigeria.
-          </p>
-          <div class="d-flex align-items-center gap-2">
-            <span class="badge bg-light text-navy border py-2 px-3 rounded-pill small">
-              <i class="bi bi-shield-check text-lemon me-1"></i> RC 1309373
-            </span>
+  <div id="footer-placeholder">
+    <footer class="site-footer">
+      <div class="container">
+        <!-- Upper Footer Row -->
+        <div class="row g-4 justify-content-between pb-4">
+          <!-- Col 1: Address & About -->
+          <div class="col-lg-4 col-md-6">
+            <h5 class="footer-col-title">Hilal Takaful Nigeria Limited</h5>
+            <p class="footer-text mb-3">
+              Plot A2, Hakeem Balogun Street,<br>
+              Alausa, Ikeja,<br>
+              CBD NECA House<br>
+              100212 - Lagos, Nigeria.
+            </p>
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge bg-light text-navy border py-2 px-3 rounded-pill small">
+                <i class="bi bi-shield-check text-lemon me-1"></i> RC 1309373
+              </span>
+            </div>
+          </div>
+
+          <!-- Col 2: Contact Info -->
+          <div class="col-lg-3 col-md-6">
+            <h5 class="footer-col-title">Contact Us</h5>
+            <div class="mb-3">
+              <div class="small text-muted mb-1">Call Us:</div>
+              <a href="tel:+2349076824451" class="footer-contact-link fw-bold text-navy">
+                + 234 907 682 4451
+              </a>
+            </div>
+            <div class="mb-3">
+              <div class="small text-muted mb-1">Email Us:</div>
+            <div class="mb-1 small">
+              Enquiries: <a href="mailto:enquiries@hilaltakaful.com.ng" class="footer-contact-link">enquiries@hilaltakaful.com.ng</a>
+            </div>
+            <div class="small">
+              Customer Service: <a href="mailto:hilalcustomerservice@hilaltakaful.com.ng" class="footer-contact-link">hilalcustomerservice@hilaltakaful.com.ng</a>
+            </div>
+            </div>
+          </div>
+
+          <!-- Col 3: Quick Links & Compliance -->
+          <div class="col-lg-3 col-md-6">
+            <h5 class="footer-col-title">Quick Links</h5>
+            <ul class="list-unstyled footer-quick-list mb-0">
+              <li class="mb-2">
+                <a href="contactus.html#faq" class="footer-quick-item">
+                  FAQs
+                </a>
+              </li>
+              <li class="mb-2">
+                <a href="fraud-disclaimer.html" class="footer-quick-item">
+                  Fraud Disclaimer
+                </a>
+              </li>
+              <li>
+                <a href="privacy-policy.html" class="footer-quick-item">
+                  Privacy Policy
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Follow Us -->
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-col-title">Follow Us</h5>
+            <div class="d-flex gap-2 mb-3">
+              <a href="https://www.facebook.com/HilalTakafulNg" target="_blank" rel="noopener" class="footer-social-link" aria-label="Facebook">
+                <i class="bi bi-facebook"></i>
+              </a>
+              <a href="https://x.com/hilaltakafulng?s=20" target="_blank" rel="noopener" class="footer-social-link" aria-label="X (Twitter)">
+                <i class="bi bi-twitter-x"></i>
+              </a>
+              <a href="https://www.instagram.com/hilaltakafulng?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
+                <i class="bi bi-instagram"></i>
+              </a>
+              <a href="https://www.linkedin.com/company/hilal-takaful-nigeria" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
+                <i class="bi bi-linkedin"></i>
+              </a>
+            </div>
+            <div class="small text-muted">
+              Connect across our verified digital social networks.
+            </div>
           </div>
         </div>
 
-        <!-- Col 2: Contact Info -->
-        <div class="col-lg-3 col-md-6">
-          <h5 class="footer-col-title">Contact Us</h5>
-          <div class="mb-3">
-            <div class="small text-muted mb-1">Call Us:</div>
-            <a href="tel:+2349076824451" class="footer-contact-link fw-bold text-navy">
-              + 234 907 682 4451
-            </a>
-          </div>
-          <div class="mb-3">
-            <div class="small text-muted mb-1">Email Us:</div>
-            <a href="mailto:enquiries@hilaltakaful.com.ng" class="footer-contact-link">
-              enquiries@hilaltakaful.com.ng
-            </a>
-          </div>
-        </div>
-
-        <!-- Col 3: Quick Links & Compliance -->
-        <div class="col-lg-3 col-md-6">
-          <h5 class="footer-col-title">Quick Links</h5>
-          <ul class="list-unstyled footer-quick-list mb-0">
-            <li class="mb-2">
-              <a href="contactus.html#faq" class="footer-quick-item">
-                <i class="bi bi-question-circle text-lemon me-2"></i> FAQs
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="whistleblowing.html" class="footer-quick-item">
-                <i class="bi bi-megaphone text-lemon me-2"></i> Whistleblowing Portal
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="fraud-disclaimer.html" class="footer-quick-item">
-                <i class="bi bi-shield-exclamation text-lemon me-2"></i> Fraud Disclaimer
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="privacy-policy.html" class="footer-quick-item">
-                <i class="bi bi-file-earmark-lock text-lemon me-2"></i> Privacy Policy &amp; NDPR
-              </a>
-            </li>
-            <li>
-              <a href="javascript:void(0)" class="footer-quick-item" id="btnManageCookies">
-                <i class="bi bi-sliders text-lemon me-2"></i> Cookie Settings
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Col 4: Follow Us -->
-        <div class="col-lg-2 col-md-6">
-          <h5 class="footer-col-title">Follow Us</h5>
-          <div class="d-flex gap-2 mb-3">
-            <a href="https://www.facebook.com/HilalTakafulNg" target="_blank" rel="noopener" class="footer-social-link" aria-label="Facebook">
-              <i class="bi bi-facebook"></i>
-            </a>
-            <a href="https://x.com/hilaltakafulng?s=20" target="_blank" rel="noopener" class="footer-social-link" aria-label="X (Twitter)">
-              <i class="bi bi-twitter-x"></i>
-            </a>
-            <a href="https://www.instagram.com/hilaltakafulng?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
-              <i class="bi bi-instagram"></i>
-            </a>
-            <a href="https://www.linkedin.com/company/hilal-takaful-nigeria" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
-              <i class="bi bi-linkedin"></i>
-            </a>
-          </div>
-          <div class="small text-muted">
-            Connect across our verified digital social networks.
-          </div>
-        </div>
-      </div>
-
-      <!-- Middle Footer: Certifications & Primary Links -->
-      <div class="footer-middle-wrap py-3 border-top border-light border-opacity-10">
+        <!-- Middle Footer: Certifications & Primary Links -->
+        <div class="footer-middle-wrap py-3 border-top border-light border-opacity-10">
         <div class="row align-items-center g-3">
-          <div class="col-lg-5 col-12">
+          <div class="col-12 text-center text-lg-start">
             <div class="footer-cert-list d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-3 gap-md-4">
               <a href="privacy-policy.html" title="NDP Act 2023 Statutory Audit Compliance Verified" class="d-inline-block">
                 <img src="assets/images/audit-trustmark.jpg" alt="NDP Act 2023 Audit Statutory Filing - Nigeria Data Protection Commission" class="footer-ndpr-seal">
@@ -166,47 +531,101 @@
               <img src="assets/images/nia-logo.png" alt="Nigeria Insurers Association NIA" class="footer-reg-logo">
             </div>
           </div>
-          <div class="col-lg-7 col-12">
-            <div class="d-flex flex-column align-items-center align-items-lg-end gap-2 small">
-              <div class="footer-quick-links d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end gap-2 gap-sm-3 fw-semibold">
-                <a href="index.html" class="footer-nav-link">Home</a>
-                <span class="footer-link-dot">•</span>
-                <a href="company-profile.html" class="footer-nav-link">About us</a>
-                <span class="footer-link-dot">•</span>
-                <a href="general-takaful.html" class="footer-nav-link">Products</a>
-                <span class="footer-link-dot">•</span>
-                <a href="our-image-gallery.html" class="footer-nav-link">Event Gallery</a>
-                <span class="footer-link-dot">•</span>
-                <a href="contactus.html" class="footer-nav-link">Contact us</a>
-              </div>
-              <div class="footer-quick-links d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end gap-2 gap-sm-3 small" style="opacity: 0.85;">
-                <a href="contactus.html#faq" class="footer-nav-link">FAQs</a>
-                <span class="footer-link-dot">•</span>
-                <a href="whistleblowing.html" class="footer-nav-link">Whistleblowing</a>
-                <span class="footer-link-dot">•</span>
-                <a href="fraud-disclaimer.html" class="footer-nav-link">Fraud Disclaimer</a>
-                <span class="footer-link-dot">•</span>
-                <a href="privacy-policy.html" class="footer-nav-link">Privacy &amp; NDPR</a>
-                <span class="footer-link-dot">•</span>
-                <a href="javascript:void(0)" class="footer-nav-link" id="btnManageCookies">Cookie Settings</a>
-              </div>
-            </div>
+        </div>
+      </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Bottom Lemon Olive Bar -->
-    <div class="footer-bottom-bar">
-      <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center text-center text-sm-start gap-2">
-        <div>&copy; <span class="current-year">2026</span> Hilal Takaful Nigeria Limited. All Rights Reserved.</div>
-        <div>Licensed &amp; Regulated by NAICOM</div>
+      <!-- Bottom Lemon Olive Bar -->
+      <div class="footer-bottom-bar">
+        <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center text-center text-sm-start gap-2">
+          <div>&copy; <span class="current-year">2026</span> Hilal Takaful Nigeria Limited. All Rights Reserved.</div>
+          <div>Licensed &amp; Regulated by NAICOM</div>
+        </div>
       </div>
-    </div>
-  </footer>
-  
-</div>
+    </footer>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/components.js"></script>
+  <script>
+    // Anonymity Toggle Interaction
+    const anonNo = document.getElementById('anonNo');
+    const anonYes = document.getElementById('anonYes');
+    const reporterDetailsSection = document.getElementById('reporterDetailsSection');
+    const anonMessage = document.getElementById('anonMessage');
+    const reporterInputs = reporterDetailsSection.querySelectorAll('input');
+
+    function handleAnonymityChange() {
+      if (anonYes.checked) {
+        reporterDetailsSection.classList.add('d-none');
+        anonMessage.classList.remove('d-none');
+        reporterInputs.forEach(input => input.removeAttribute('required'));
+      } else {
+        reporterDetailsSection.classList.remove('d-none');
+        anonMessage.classList.add('d-none');
+        document.getElementById('reporterFullName').setAttribute('required', 'required');
+        document.getElementById('reporterEmail').setAttribute('required', 'required');
+        document.getElementById('reporterMobile').setAttribute('required', 'required');
+      }
+    }
+
+    anonNo.addEventListener('change', handleAnonymityChange);
+    anonYes.addEventListener('change', handleAnonymityChange);
+
+    // Form Submission & Captcha Validation
+    const form = document.getElementById('whistleblowingReportForm');
+    const captchaInput = document.getElementById('captchaAnswer');
+    const captchaFeedback = document.getElementById('captchaFeedback');
+    const alertBox = document.getElementById('submissionAlert');
+    const submitBtn = document.getElementById('btnSubmitReport');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Check human captcha
+      const answer = parseInt(captchaInput.value.trim(), 10);
+      if (answer !== 30) {
+        captchaFeedback.classList.remove('d-none');
+        captchaInput.classList.add('is-invalid');
+        captchaInput.focus();
+        return;
+      }
+      captchaFeedback.classList.add('d-none');
+      captchaInput.classList.remove('is-invalid');
+
+      // Basic HTML5 form validity check
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Simulate secure dispatch
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Transmitting Confidentially...';
+
+      setTimeout(function() {
+        alertBox.className = 'alert alert-success border-0 shadow-sm rounded-3 p-3';
+        alertBox.innerHTML = `
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-check-circle-fill fs-3 text-success"></i>
+            <div>
+              <h6 class="fw-bold mb-1">Confidential Report Successfully Submitted</h6>
+              <p class="small mb-0">Your disclosure has been securely transmitted directly to the Head of Internal Audit and the Board Audit Committee. Reference ID: <strong>HT-WB-${Date.now().toString().slice(-6)}</strong>. Thank you for your integrity.</p>
+            </div>
+          </div>
+        `;
+        alertBox.classList.remove('d-none');
+        form.reset();
+        handleAnonymityChange();
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i> Report Received';
+        setTimeout(() => {
+          submitBtn.innerHTML = '<i class="bi bi-send-fill me-2"></i> Submit Confidential Report';
+        }, 5000);
+      }, 1200);
+    });
+  </script>
 </body>
 </html>

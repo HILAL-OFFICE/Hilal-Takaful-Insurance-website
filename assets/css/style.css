@@ -797,6 +797,40 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.05);
 }
 
+/* Optimized framing for MD portrait to display face and upper torso clearly */
+.team-avatar-img[src*="abdur-rasheed-babalola"],
+.modal-team-avatar-img[src*="abdur-rasheed-babalola"] {
+  object-fit: cover !important;
+  object-position: center 12% !important;
+  transform: scale(1.18) !important;
+  transform-origin: center 20% !important;
+  background-color: #FFFFFF;
+}
+
+.team-card:hover .team-avatar-img[src*="abdur-rasheed-babalola"] {
+  transform: scale(1.24) !important;
+  transform-origin: center 20% !important;
+}
+
+/* Zoom out profile pictures for Tajudeen Ibrahim, Hafsat Umar, and Akeem Shadare */
+.team-avatar-img[src*="tajudeen-ibrahim"],
+.modal-team-avatar-img[src*="tajudeen-ibrahim"],
+.team-avatar-img[src*="hafsat-umar"],
+.modal-team-avatar-img[src*="hafsat-umar"],
+.team-avatar-img[src*="akeem-shadare"],
+.modal-team-avatar-img[src*="akeem-shadare"] {
+  object-fit: contain !important;
+  object-position: center center !important;
+  transform: scale(1.0) !important;
+  background-color: #FFFFFF;
+}
+
+.team-card:hover .team-avatar-img[src*="tajudeen-ibrahim"],
+.team-card:hover .team-avatar-img[src*="hafsat-umar"],
+.team-card:hover .team-avatar-img[src*="akeem-shadare"] {
+  transform: scale(1.05) !important;
+}
+
 .team-card-body {
   padding: 1.25rem 1.5rem 1.5rem;
   display: flex;
