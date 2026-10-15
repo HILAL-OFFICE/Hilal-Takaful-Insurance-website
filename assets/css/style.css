@@ -812,23 +812,41 @@ h1, h2, h3, h4, h5, h6 {
   transform-origin: center 20% !important;
 }
 
-/* Zoom out profile pictures for Tajudeen Ibrahim, Hafsat Umar, and Akeem Shadare */
-.team-avatar-img[src*="tajudeen-ibrahim"],
-.modal-team-avatar-img[src*="tajudeen-ibrahim"],
+/* Fill circle close up for Tajudeen Ibrahim, Hafsat Umar, and Akeem Shadare */
 .team-avatar-img[src*="hafsat-umar"],
-.modal-team-avatar-img[src*="hafsat-umar"],
-.team-avatar-img[src*="akeem-shadare"],
-.modal-team-avatar-img[src*="akeem-shadare"] {
-  object-fit: contain !important;
-  object-position: center center !important;
-  transform: scale(1.0) !important;
-  background-color: #FFFFFF;
+.modal-team-avatar-img[src*="hafsat-umar"] {
+  object-fit: cover !important;
+  object-position: center 10% !important;
+  transform: scale(2.05) !important;
+  transform-origin: center 20% !important;
 }
 
-.team-card:hover .team-avatar-img[src*="tajudeen-ibrahim"],
-.team-card:hover .team-avatar-img[src*="hafsat-umar"],
+.team-card:hover .team-avatar-img[src*="hafsat-umar"] {
+  transform: scale(2.15) !important;
+}
+
+.team-avatar-img[src*="tajudeen-ibrahim"],
+.modal-team-avatar-img[src*="tajudeen-ibrahim"] {
+  object-fit: cover !important;
+  object-position: center 12% !important;
+  transform: scale(1.75) !important;
+  transform-origin: center 22% !important;
+}
+
+.team-card:hover .team-avatar-img[src*="tajudeen-ibrahim"] {
+  transform: scale(1.82) !important;
+}
+
+.team-avatar-img[src*="akeem-shadare"],
+.modal-team-avatar-img[src*="akeem-shadare"] {
+  object-fit: cover !important;
+  object-position: center 12% !important;
+  transform: scale(1.7) !important;
+  transform-origin: center 22% !important;
+}
+
 .team-card:hover .team-avatar-img[src*="akeem-shadare"] {
-  transform: scale(1.05) !important;
+  transform: scale(1.78) !important;
 }
 
 .team-card-body {
