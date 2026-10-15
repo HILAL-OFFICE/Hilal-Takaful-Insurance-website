@@ -101,83 +101,131 @@
 
   function getFooterHtml() {
     return `
-    <footer class="site-footer">
-      <div class="container">
-        <!-- Upper Footer Row -->
-        <div class="row g-4 justify-content-between pb-4">
-          <!-- Col 1: Address -->
-          <div class="col-lg-4 col-md-6">
-            <h5 class="footer-col-title">Hilal Takaful Nigeria Limited</h5>
-            <p class="footer-text mb-0">
-              Plot A2, Hakeem Balogun Street,<br>
-              Alausa, Ikeja,<br>
-              CBD NECA House<br>
-              100212 - Lagos.<br>
-              Nigeria.
-            </p>
-          </div>
 
-          <!-- Col 2: Call Us -->
-          <div class="col-lg-3 col-md-6">
-            <h5 class="footer-col-title">Call us</h5>
-            <p class="mb-0">
-              <a href="tel:+2349076824451" class="footer-contact-link fw-semibold">
-                + 234 907 682 4451
-              </a>
-            </p>
-          </div>
-
-          <!-- Col 3: Send us a message -->
-          <div class="col-lg-3 col-md-6">
-            <h5 class="footer-col-title">Send us a message</h5>
-            <p class="mb-0">
-              <a href="mailto:enquiries@hilaltakaful.com.ng" class="footer-contact-link">
-                enquiries@hilaltakaful.com.ng
-              </a>
-            </p>
-          </div>
-
-          <!-- Col 4: Follow us -->
-          <div class="col-lg-2 col-md-6">
-            <h5 class="footer-col-title">Follow us</h5>
-            <div class="d-flex gap-2">
-              <a href="https://www.facebook.com/HilalTakafulNg" target="_blank" rel="noopener" class="footer-social-link" aria-label="Facebook">
-                <i class="bi bi-facebook"></i>
-              </a>
-              <a href="https://x.com/hilaltakafulng?s=20" target="_blank" rel="noopener" class="footer-social-link" aria-label="X (Twitter)">
-                <i class="bi bi-twitter-x"></i>
-              </a>
-              <a href="https://www.instagram.com/hilaltakafulng?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
-                <i class="bi bi-instagram"></i>
-              </a>
-              <a href="https://www.linkedin.com/company/hilal-takaful-nigeria" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
-                <i class="bi bi-linkedin"></i>
-              </a>
-            </div>
+  <!-- Single Unified Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <!-- Upper Footer Row -->
+      <div class="row g-4 justify-content-between pb-4">
+        <!-- Col 1: Address & About -->
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-col-title">Hilal Takaful Nigeria Limited</h5>
+          <p class="footer-text mb-3">
+            Plot A2, Hakeem Balogun Street,<br>
+            Alausa, Ikeja,<br>
+            CBD NECA House<br>
+            100212 - Lagos, Nigeria.
+          </p>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-light text-navy border py-2 px-3 rounded-pill small">
+              <i class="bi bi-shield-check text-lemon me-1"></i> RC 1309373
+            </span>
           </div>
         </div>
 
-        <!-- Middle Footer: Certifications & Quick Links -->
-        <div class="footer-middle-wrap py-3 border-top border-light border-opacity-10">
-          <div class="row align-items-center g-3">
-            <div class="col-lg-6 col-12">
-              <div class="footer-cert-list d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-3 gap-md-4">
-                <a href="privacy-policy.html" title="NDP Act 2023 Statutory Audit Compliance Verified" class="d-inline-block">
-                  <img src="assets/images/audit-trustmark.jpg" alt="NDP Act 2023 Audit Statutory Filing - Nigeria Data Protection Commission" class="footer-ndpr-seal">
-                </a>
-                <img src="assets/images/naicom-logo.png" alt="National Insurance Commission NAICOM" class="footer-reg-logo">
-                <img src="assets/images/nia-logo.png" alt="Nigeria Insurers Association NIA" class="footer-reg-logo">
-              </div>
+        <!-- Col 2: Contact Info -->
+        <div class="col-lg-3 col-md-6">
+          <h5 class="footer-col-title">Contact Us</h5>
+          <div class="mb-3">
+            <div class="small text-muted mb-1">Call Us:</div>
+            <a href="tel:+2349076824451" class="footer-contact-link fw-bold text-navy">
+              + 234 907 682 4451
+            </a>
+          </div>
+          <div class="mb-3">
+            <div class="small text-muted mb-1">Email Us:</div>
+            <a href="mailto:enquiries@hilaltakaful.com.ng" class="footer-contact-link">
+              enquiries@hilaltakaful.com.ng
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 3: Quick Links & Compliance -->
+        <div class="col-lg-3 col-md-6">
+          <h5 class="footer-col-title">Quick Links</h5>
+          <ul class="list-unstyled footer-quick-list mb-0">
+            <li class="mb-2">
+              <a href="contactus.html#faq" class="footer-quick-item">
+                <i class="bi bi-question-circle text-lemon me-2"></i> FAQs
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="whistleblowing.html" class="footer-quick-item">
+                <i class="bi bi-megaphone text-lemon me-2"></i> Whistleblowing Portal
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="fraud-disclaimer.html" class="footer-quick-item">
+                <i class="bi bi-shield-exclamation text-lemon me-2"></i> Fraud Disclaimer
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="privacy-policy.html" class="footer-quick-item">
+                <i class="bi bi-file-earmark-lock text-lemon me-2"></i> Privacy Policy &amp; NDPR
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" class="footer-quick-item" id="btnManageCookies">
+                <i class="bi bi-sliders text-lemon me-2"></i> Cookie Settings
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Follow Us -->
+        <div class="col-lg-2 col-md-6">
+          <h5 class="footer-col-title">Follow Us</h5>
+          <div class="d-flex gap-2 mb-3">
+            <a href="https://www.facebook.com/HilalTakafulNg" target="_blank" rel="noopener" class="footer-social-link" aria-label="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://x.com/hilaltakafulng?s=20" target="_blank" rel="noopener" class="footer-social-link" aria-label="X (Twitter)">
+              <i class="bi bi-twitter-x"></i>
+            </a>
+            <a href="https://www.instagram.com/hilaltakafulng?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/hilal-takaful-nigeria" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+          </div>
+          <div class="small text-muted">
+            Connect across our verified digital social networks.
+          </div>
+        </div>
+      </div>
+
+      <!-- Middle Footer: Certifications & Primary Links -->
+      <div class="footer-middle-wrap py-3 border-top border-light border-opacity-10">
+        <div class="row align-items-center g-3">
+          <div class="col-lg-5 col-12">
+            <div class="footer-cert-list d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-3 gap-md-4">
+              <a href="privacy-policy.html" title="NDP Act 2023 Statutory Audit Compliance Verified" class="d-inline-block">
+                <img src="assets/images/audit-trustmark.jpg" alt="NDP Act 2023 Audit Statutory Filing - Nigeria Data Protection Commission" class="footer-ndpr-seal">
+              </a>
+              <img src="assets/images/naicom-logo.png" alt="National Insurance Commission NAICOM" class="footer-reg-logo">
+              <img src="assets/images/nia-logo.png" alt="Nigeria Insurers Association NIA" class="footer-reg-logo">
             </div>
-            <div class="col-lg-6 col-12">
-              <div class="footer-quick-links d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end gap-2 gap-sm-3 small fw-semibold">
+          </div>
+          <div class="col-lg-7 col-12">
+            <div class="d-flex flex-column align-items-center align-items-lg-end gap-2 small">
+              <div class="footer-quick-links d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end gap-2 gap-sm-3 fw-semibold">
                 <a href="index.html" class="footer-nav-link">Home</a>
                 <span class="footer-link-dot">•</span>
                 <a href="company-profile.html" class="footer-nav-link">About us</a>
                 <span class="footer-link-dot">•</span>
                 <a href="general-takaful.html" class="footer-nav-link">Products</a>
                 <span class="footer-link-dot">•</span>
+                <a href="our-image-gallery.html" class="footer-nav-link">Event Gallery</a>
+                <span class="footer-link-dot">•</span>
                 <a href="contactus.html" class="footer-nav-link">Contact us</a>
+              </div>
+              <div class="footer-quick-links d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end gap-2 gap-sm-3 small" style="opacity: 0.85;">
+                <a href="contactus.html#faq" class="footer-nav-link">FAQs</a>
+                <span class="footer-link-dot">•</span>
+                <a href="whistleblowing.html" class="footer-nav-link">Whistleblowing</a>
+                <span class="footer-link-dot">•</span>
+                <a href="fraud-disclaimer.html" class="footer-nav-link">Fraud Disclaimer</a>
                 <span class="footer-link-dot">•</span>
                 <a href="privacy-policy.html" class="footer-nav-link">Privacy &amp; NDPR</a>
                 <span class="footer-link-dot">•</span>
@@ -187,15 +235,17 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Bottom Lemon Olive Bar -->
-      <div class="footer-bottom-bar">
-        <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center text-center text-sm-start gap-2">
-          <div>&copy; <span class="current-year">${new Date().getFullYear()}</span> Hilal Takaful Nigeria Limited. All Rights Reserved.</div>
-          <div>Licensed &amp; Regulated by NAICOM</div>
-        </div>
+    <!-- Bottom Lemon Olive Bar -->
+    <div class="footer-bottom-bar">
+      <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center text-center text-sm-start gap-2">
+        <div>&copy; <span class="current-year">2026</span> Hilal Takaful Nigeria Limited. All Rights Reserved.</div>
+        <div>Licensed &amp; Regulated by NAICOM</div>
       </div>
-    </footer>
+    </div>
+  </footer>
+  
     `;
   }
 
