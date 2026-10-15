@@ -1,5 +1,5 @@
 /**
- * HILAL TAKAFUL NIGERIA LIMITED - MAIN APPLICATION JAVASCRIPT
+ * HILAL TAKAFUL INSURANCE LIMITED - MAIN APPLICATION JAVASCRIPT
  * Handles Quote Calculator, Claims Reporting Wizard, Product Filters,
  * Modals, Toast Notifications, and Smooth UI Interactions.
  */

@@ -1,5 +1,5 @@
 /**
- * Hilal Takaful Nigeria Limited - Shared Header, Footer & Cookie Consent
+ * Hilal Takaful Insurance Limited - Shared Header, Footer & Cookie Consent
  * Compliant with Nigeria Data Protection Act (NDPA 2023) & NAICOM Guidelines.
  */
 
@@ -41,7 +41,7 @@
     <nav class="navbar navbar-expand-lg main-navbar">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <img src="assets/images/logo.png" alt="Hilal Takaful Nigeria Limited">
+          <img src="assets/images/logo.png" alt="Hilal Takaful Insurance Limited">
         </a>
         
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -109,7 +109,7 @@
       <div class="row g-4 justify-content-between pb-4">
         <!-- Col 1: Address & About -->
         <div class="col-lg-4 col-md-6">
-          <h5 class="footer-col-title">Hilal Takaful Nigeria Limited</h5>
+          <h5 class="footer-col-title">Hilal Takaful Insurance Limited</h5>
           <p class="footer-text mb-3">
             Plot A2, Hakeem Balogun Street,<br>
             Alausa, Ikeja,<br>
@@ -138,7 +138,7 @@
               Enquiries: <a href="mailto:enquiries@hilaltakaful.com.ng" class="footer-contact-link">enquiries@hilaltakaful.com.ng</a>
             </div>
             <div class="small">
-              Customer Service: <a href="mailto:hilalcustomerservice@hilaltakaful.com.ng" class="footer-contact-link">hilalcustomerservice@hilaltakaful.com.ng</a>
+              Customer Service: <a href="mailto:hilaltakafulcustomerservice@hilaltakaful.com.ng" class="footer-contact-link">hilaltakafulcustomerservice@hilaltakaful.com.ng</a>
             </div>
           </div>
         </div>
@@ -208,7 +208,7 @@
     <!-- Bottom Lemon Olive Bar -->
     <div class="footer-bottom-bar">
       <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center text-center text-sm-start gap-2">
-        <div>&copy; <span class="current-year">2026</span> Hilal Takaful Nigeria Limited. All Rights Reserved.</div>
+        <div>&copy; <span class="current-year">2026</span> Hilal Takaful Insurance Limited. All Rights Reserved.</div>
         <div>Licensed &amp; Regulated by NAICOM</div>
       </div>
     </div>
@@ -333,8 +333,8 @@
       el.textContent = currentYear;
     });
     document.querySelectorAll('footer, .footer-bottom-bar, .site-footer').forEach(function(container) {
-      if (container.innerHTML && container.innerHTML.includes('Hilal Takaful Nigeria Limited')) {
-        container.innerHTML = container.innerHTML.replace(/(&copy;|©)\s*\d{4}(\s+Hilal Takaful Nigeria Limited)/g, `$1 <span class="current-year">${currentYear}</span>$2`);
+      if (container.innerHTML && container.innerHTML.includes('Hilal Takaful Insurance Limited')) {
+        container.innerHTML = container.innerHTML.replace(/(&copy;|©)\s*\d{4}(\s+Hilal Takaful Insurance Limited)/g, `$1 <span class="current-year">${currentYear}</span>$2`);
       }
     });
   }
