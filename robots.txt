@@ -1,4 +1,4 @@
-# robots.txt for Hilal Takaful Nigeria Limited
+# robots.txt for Hilal Takaful Insurance Limited
 User-agent: *
 Allow: /
 Disallow: /admin/

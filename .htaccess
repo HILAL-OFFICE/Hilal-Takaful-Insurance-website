@@ -1,0 +1,54 @@
+# ==============================================================================
+# HILAL TAKAFUL INSURANCE LIMITED - APACHE / CPANEL WEB SERVER CONFIGURATION
+# ==============================================================================
+
+RewriteEngine On
+
+# ------------------------------------------------------------------------------
+# 1. Force HTTPS
+# ------------------------------------------------------------------------------
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ------------------------------------------------------------------------------
+# 2. 301 Permanent Redirects for Search Engines (Old URLs -> New URLs)
+# This informs Google & Bing to replace outdated search results with new links
+# ------------------------------------------------------------------------------
+RewriteRule ^about-us/?$ /company-profile.html [R=301,L]
+RewriteRule ^about/?$ /company-profile.html [R=301,L]
+RewriteRule ^our-team/?$ /management-team.html [R=301,L]
+RewriteRule ^team/?$ /management-team.html [R=301,L]
+RewriteRule ^board/?$ /board-of-directors.html [R=301,L]
+RewriteRule ^directors/?$ /board-of-directors.html [R=301,L]
+RewriteRule ^shariah-board/?$ /advisory-council.html [R=301,L]
+RewriteRule ^advisory/?$ /advisory-council.html [R=301,L]
+RewriteRule ^general-takaful/?$ /general-takaful.html [R=301,L]
+RewriteRule ^family-takaful/?$ /family-takaful.html [R=301,L]
+RewriteRule ^contact/?$ /contactus.html [R=301,L]
+RewriteRule ^contact-us/?$ /contactus.html [R=301,L]
+RewriteRule ^gallery/?$ /our-image-gallery.html [R=301,L]
+RewriteRule ^news/?$ /blog.html [R=301,L]
+RewriteRule ^investors/?$ /investors-relation.html [R=301,L]
+RewriteRule ^web/login/?$ /login.html [R=301,L]
+
+# ------------------------------------------------------------------------------
+# 3. Allow accessing pages without .html extension in URL
+# ------------------------------------------------------------------------------
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# ------------------------------------------------------------------------------
+# 4. Custom 404 Error Page
+# ------------------------------------------------------------------------------
+ErrorDocument 404 /index.html
+
+# ------------------------------------------------------------------------------
+# 5. Security & Caching Headers
+# ------------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
