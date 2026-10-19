@@ -29,7 +29,8 @@ RewriteRule ^contact-us/?$ /contactus.html [R=301,L]
 RewriteRule ^gallery/?$ /our-image-gallery.html [R=301,L]
 RewriteRule ^news/?$ /blog.html [R=301,L]
 RewriteRule ^investors/?$ /investors-relation.html [R=301,L]
-RewriteRule ^web/login/?$ /login.html [R=301,L]
+RewriteRule ^web/login/?$ /index.html [R=301,L]
+RewriteRule ^login(\.html)?$ /index.html [R=301,L]
 
 # ------------------------------------------------------------------------------
 # 3. Allow accessing pages without .html extension in URL
