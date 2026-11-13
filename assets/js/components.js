@@ -342,7 +342,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     updateCurrentYear();
     const navPlaceholder = document.getElementById('navbar-placeholder');
-    if (navPlaceholder) {
+    if (navPlaceholder && !navPlaceholder.querySelector('.main-navbar')) {
       navPlaceholder.innerHTML = getNavbarHtml(currentPath);
     }
     const footerPlaceholder = document.getElementById('footer-placeholder');

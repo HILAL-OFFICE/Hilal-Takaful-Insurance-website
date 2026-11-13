@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Hilal Takaful Insurance Limited - CMS Dynamic Client
  * Automatically hydrates static HTML pages with real-time updates from Supabase/Backend.
  * Features:
@@ -230,16 +230,23 @@
           if (col) col.setAttribute("data-member-id", member.id);
 
           const roleEl = card.querySelector(".team-member-role");
-          if (roleEl && member.role) roleEl.textContent = member.role;
+          if (roleEl && member.role && roleEl.textContent.trim() !== member.role.trim()) {
+            roleEl.textContent = member.role;
+          }
 
           const snippetEl = card.querySelector(".team-bio-snippet");
-          if (snippetEl && member.bio_snippet) snippetEl.textContent = member.bio_snippet;
+          if (snippetEl && member.bio_snippet && snippetEl.textContent.trim() !== member.bio_snippet.trim()) {
+            snippetEl.textContent = member.bio_snippet;
+          }
 
           if (member.avatar_url) {
             const imgEl = card.querySelector(".team-avatar-img");
             if (imgEl) {
-              imgEl.src = resolveImageUrl(member.avatar_url);
-              bindImageErrorHandler(imgEl);
+              const resolvedSrc = resolveImageUrl(member.avatar_url);
+              if (imgEl.getAttribute("src") !== resolvedSrc) {
+                imgEl.src = resolvedSrc;
+                bindImageErrorHandler(imgEl);
+              }
             }
           }
 
@@ -364,7 +371,8 @@
 
     // ── Reorder DOM cards to match API order_index sequence ──────────────────
     // The API returns members already sorted by order_index ASC.
-    // We re-insert each column element into gridContainer in that exact order.
+    // Check if DOM columns are already in target order to prevent unnecessary reflow/flicker.
+    const desiredCols = [];
     members.forEach(member => {
       let col = gridContainer.querySelector(`[data-member-id="${member.id}"]`);
       if (!col) {
@@ -380,9 +388,16 @@
         }
       }
       if (col && col.parentElement === gridContainer) {
-        gridContainer.appendChild(col);
+        desiredCols.push(col);
       }
     });
+
+    const currentCols = Array.from(gridContainer.children).filter(el => desiredCols.includes(el));
+    const isAlreadyOrdered = currentCols.length === desiredCols.length && currentCols.every((c, i) => c === desiredCols[i]);
+
+    if (!isAlreadyOrdered) {
+      desiredCols.forEach(col => gridContainer.appendChild(col));
+    }
   }
 
   async function hydrateTeamMembers() {

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Hilal Takaful CMS - Views & Section Routing
  */
 
@@ -481,6 +481,8 @@ async function shiftTeamMember(categoryKey, memberId, direction) {
 // Cropper instance reference
 let cropperInstance = null;
 let croppedAvatarBlob = null;
+let selectedAvatarMime = 'image/jpeg';
+let selectedAvatarExt = 'jpg';
 
 function initCropperListeners() {
   const photoInput = document.getElementById('teamPhotoInput');
@@ -495,6 +497,10 @@ function initCropperListeners() {
     const files = e.target.files;
     if (files && files.length > 0) {
       const file = files[0];
+      const isTransparent = file.type === 'image/png' || file.type === 'image/webp';
+      selectedAvatarMime = isTransparent ? (file.type === 'image/webp' ? 'image/webp' : 'image/png') : 'image/jpeg';
+      selectedAvatarExt = isTransparent ? (file.type === 'image/webp' ? 'webp' : 'png') : 'jpg';
+
       const reader = new FileReader();
       reader.onload = (event) => {
         cropperImg.src = event.target.result;
@@ -535,11 +541,11 @@ function initCropperListeners() {
     canvas.toBlob((blob) => {
       croppedAvatarBlob = blob;
       if (previewImg) {
-        previewImg.src = canvas.toDataURL('image/jpeg', 0.9);
+        previewImg.src = canvas.toDataURL(selectedAvatarMime, 0.92);
       }
       const cropModal = bootstrap.Modal.getInstance(cropModalEl);
       if (cropModal) cropModal.hide();
-    }, 'image/jpeg', 0.88);
+    }, selectedAvatarMime, selectedAvatarMime === 'image/png' ? undefined : 0.88);
   };
 }
 
@@ -590,7 +596,7 @@ function openTeamModal(member = null) {
       // If user cropped a new photo
       if (croppedAvatarBlob) {
         saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Uploading avatar...';
-        const file = new File([croppedAvatarBlob], `${Date.now()}-avatar.jpg`, { type: 'image/jpeg' });
+        const file = new File([croppedAvatarBlob], `${Date.now()}-avatar.${selectedAvatarExt}`, { type: selectedAvatarMime });
         avatarUrl = await uploadFile(file, 'team-avatars');
       }
 

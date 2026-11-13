@@ -56,6 +56,11 @@ async function compressImage(file, maxDimension = 1200, quality = 0.85) {
     return file;
   }
 
+  // Determine if source image supports transparency (PNG, WebP)
+  const isTransparent = file.type === 'image/png' || file.type === 'image/webp';
+  const targetMime = isTransparent ? (file.type === 'image/webp' ? 'image/webp' : 'image/png') : 'image/jpeg';
+  const targetExt = isTransparent ? (file.type === 'image/webp' ? '.webp' : '.png') : '.jpg';
+
   return new Promise((resolve) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -84,6 +89,10 @@ async function compressImage(file, maxDimension = 1200, quality = 0.85) {
         canvas.height = height;
 
         const ctx = canvas.getContext('2d');
+        // If PNG or WebP, clear canvas with transparent rect to ensure alpha is clean
+        if (isTransparent) {
+          ctx.clearRect(0, 0, width, height);
+        }
         ctx.drawImage(img, 0, 0, width, height);
 
         canvas.toBlob(
@@ -93,15 +102,15 @@ async function compressImage(file, maxDimension = 1200, quality = 0.85) {
               return;
             }
             // Retain original name, append extension if needed
-            const compressedFile = new File([blob], file.name.replace(/\.[^.]+$/, '.jpg'), {
-              type: 'image/jpeg',
+            const compressedFile = new File([blob], file.name.replace(/\.[^.]+$/, targetExt), {
+              type: targetMime,
               lastModified: Date.now()
             });
-            console.log(`Image compressed: ${(file.size / 1024).toFixed(1)} KB -> ${(compressedFile.size / 1024).toFixed(1)} KB`);
+            console.log(`Image processed: ${(file.size / 1024).toFixed(1)} KB -> ${(compressedFile.size / 1024).toFixed(1)} KB (${targetMime})`);
             resolve(compressedFile);
           },
-          'image/jpeg',
-          quality
+          targetMime,
+          isTransparent ? undefined : quality
         );
       };
       img.onerror = () => resolve(file);
