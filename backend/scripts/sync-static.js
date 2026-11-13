@@ -255,6 +255,21 @@ function syncLeadershipPage(filePath, category, members) {
     }
   });
 
+  // C. Reorder cards in static HTML to match order_index sequence
+  members.forEach(member => {
+    const matchedCard = gridContainer.find('.team-card').filter((_, el) => {
+      const name = $(el).find('.team-member-name').text().trim().toLowerCase();
+      const mName = member.name.toLowerCase();
+      return name.includes(mName) || mName.includes(name);
+    });
+    if (matchedCard.length) {
+      const col = matchedCard.closest('.col-lg-4, .col-md-6');
+      if (col.length) {
+        gridContainer.append(col);
+      }
+    }
+  });
+
   fs.writeFileSync(fullPath, $.html(), 'utf8');
   console.log(`✅ ${path.basename(filePath)} synchronized cleanly.`);
 }

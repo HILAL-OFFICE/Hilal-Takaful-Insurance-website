@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Hilal Takaful Insurance Limited - CMS Dynamic Client
  * Automatically hydrates static HTML pages with real-time updates from Supabase/Backend.
  * Features:
@@ -207,54 +207,60 @@
   function applyTeamMembers(members) {
     if (!Array.isArray(members) || members.length === 0) return;
 
-    const gridContainer = document.querySelector('.row.g-4.justify-content-center') || document.querySelector('.row.justify-content-center');
+    const gridContainer = document.querySelector(".row.g-4.justify-content-center") || document.querySelector(".row.justify-content-center");
     if (!gridContainer) return;
 
     // Update existing matching cards
-    const existingCards = Array.from(document.querySelectorAll('.team-card'));
+    const existingCards = Array.from(document.querySelectorAll(".team-card"));
     const matchedMemberIds = new Set();
 
     members.forEach(member => {
-      const matchedHeader = existingCards.map(c => c.querySelector('.team-member-name')).find(h => 
-        h && h.textContent.trim().toLowerCase().includes(member.name.toLowerCase())
-      );
+      const matchedHeader = existingCards.map(c => c.querySelector(".team-member-name")).find(h => {
+        if (!h) return false;
+        const txt = h.textContent.trim().toLowerCase();
+        const mName = member.name.toLowerCase();
+        return txt.includes(mName) || mName.includes(txt);
+      });
 
       if (matchedHeader) {
         matchedMemberIds.add(member.id);
-        const card = matchedHeader.closest('.team-card');
+        const card = matchedHeader.closest(".team-card");
         if (card) {
-          const roleEl = card.querySelector('.team-member-role');
+          const col = card.closest(".col-lg-4") || card.closest(".col-md-6") || card.parentElement;
+          if (col) col.setAttribute("data-member-id", member.id);
+
+          const roleEl = card.querySelector(".team-member-role");
           if (roleEl && member.role) roleEl.textContent = member.role;
 
-          const snippetEl = card.querySelector('.team-bio-snippet');
+          const snippetEl = card.querySelector(".team-bio-snippet");
           if (snippetEl && member.bio_snippet) snippetEl.textContent = member.bio_snippet;
 
           if (member.avatar_url) {
-            const imgEl = card.querySelector('.team-avatar-img');
+            const imgEl = card.querySelector(".team-avatar-img");
             if (imgEl) {
               imgEl.src = resolveImageUrl(member.avatar_url);
               bindImageErrorHandler(imgEl);
             }
           }
 
-          const modalTarget = card.getAttribute('data-bs-target');
+          const modalTarget = card.getAttribute("data-bs-target");
           if (modalTarget) {
             const modalEl = document.querySelector(modalTarget);
             if (modalEl) {
               if (member.role) {
-                const modalRole = modalEl.querySelector('.text-lemon.fw-bold');
+                const modalRole = modalEl.querySelector(".text-lemon.fw-bold");
                 if (modalRole) modalRole.textContent = member.role;
               }
-              const subtitleText = member.sub_title || member.honorifics || '';
+              const subtitleText = member.sub_title || member.honorifics || "";
               if (subtitleText) {
-                const modalHon = modalEl.querySelector('.small.text-muted');
+                const modalHon = modalEl.querySelector(".small.text-muted");
                 if (modalHon) modalHon.innerHTML = `<i class="bi bi-patch-check-fill text-lemon me-1"></i>${subtitleText}`;
               }
               if (member.bio_full) {
-                const bioContainer = modalEl.querySelector('.lh-lg.text-body') || modalEl.querySelector('.modal-body .mb-4 div');
+                const bioContainer = modalEl.querySelector(".lh-lg.text-body") || modalEl.querySelector(".modal-body .mb-4 div");
                 if (bioContainer) {
                   const paras = member.bio_full.split(/\n\n+/).filter(p => p.trim().length > 0);
-                  bioContainer.innerHTML = paras.map(p => `<p>${p}</p>`).join('');
+                  bioContainer.innerHTML = paras.map(p => `<p>${p}</p>`).join("");
                 }
               }
             }
@@ -265,12 +271,12 @@
 
     // Cleanly remove any team card from the page if it has been deleted from the database
     existingCards.forEach(card => {
-      const nameEl = card.querySelector('.team-member-name');
+      const nameEl = card.querySelector(".team-member-name");
       if (!nameEl) return;
       const cardName = nameEl.textContent.trim().toLowerCase();
       const stillExists = members.some(m => cardName.includes(m.name.toLowerCase()) || m.name.toLowerCase().includes(cardName));
       if (!stillExists) {
-        const col = card.closest('.col-lg-4') || card.closest('.col-md-6') || card.parentElement;
+        const col = card.closest(".col-lg-4") || card.closest(".col-md-6") || card.parentElement;
         if (col) col.remove();
       }
     });
@@ -278,17 +284,17 @@
     // Append newly added leaders
     members.forEach(member => {
       if (!matchedMemberIds.has(member.id)) {
-        const safeSlug = member.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        const safeSlug = member.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
         const modalId = `modal-dyn-${safeSlug}`;
 
-        // If card already exists in DOM from cache or previous call, don't re-create or delete it
-        if (document.querySelector(`[data-dyn-member-id="${member.id}"]`)) {
+        if (document.querySelector(`[data-dyn-member-id="${member.id}"]`) || document.querySelector(`[data-member-id="${member.id}"]`)) {
           return;
         }
 
-        const col = document.createElement('div');
-        col.className = 'col-lg-4 col-md-6 mb-4 dyn-team-card';
-        col.setAttribute('data-dyn-member-id', member.id);
+        const col = document.createElement("div");
+        col.className = "col-lg-4 col-md-6 mb-4 dyn-team-card";
+        col.setAttribute("data-dyn-member-id", member.id);
+        col.setAttribute("data-member-id", member.id);
         col.innerHTML = `
           <div class="team-card h-100" data-bs-toggle="modal" data-bs-target="#${modalId}">
             <div class="team-card-banner"></div>
@@ -298,11 +304,11 @@
               </div>
             </div>
             <div class="team-card-body text-center">
-              <h4 class="team-member-name">${member.name} ${member.honorifics ? `<span class="small">(${member.honorifics})</span>` : ''}</h4>
+              <h4 class="team-member-name">${member.name} ${member.honorifics ? `<span class="small">(${member.honorifics})</span>` : "" }</h4>
               <div class="d-flex justify-content-center">
                 <span class="team-member-role">${member.role}</span>
               </div>
-              <p class="team-bio-snippet">${member.bio_snippet || ''}</p>
+              <p class="team-bio-snippet">${member.bio_snippet || ""}</p>
               <div class="team-card-footer justify-content-center">
                 <span class="btn btn-outline-lemon rounded-pill px-4 py-1 btn-sm fw-bold">
                   View Full Profile <i class="bi bi-arrow-right ms-1"></i>
@@ -314,11 +320,11 @@
         gridContainer.appendChild(col);
 
         if (!document.getElementById(modalId)) {
-          const modalDiv = document.createElement('div');
-          modalDiv.className = 'modal fade';
+          const modalDiv = document.createElement("div");
+          modalDiv.className = "modal fade";
           modalDiv.id = modalId;
           modalDiv.tabIndex = -1;
-          modalDiv.setAttribute('aria-hidden', 'true');
+          modalDiv.setAttribute("aria-hidden", "true");
           modalDiv.innerHTML = `
             <div class="modal-dialog modal-dialog-centered modal-team-dialog">
               <div class="modal-content modal-team-content">
@@ -333,7 +339,7 @@
                     <div class="text-center text-md-start flex-grow-1 pt-2">
                       <h3 class="fw-bold text-navy mb-1">${member.name}</h3>
                       <p class="fs-6 text-lemon fw-bold mb-2">${member.role}</p>
-                      ${member.honorifics ? `<p class="small text-muted mb-0"><i class="bi bi-patch-check-fill text-lemon me-1"></i>${member.honorifics}</p>` : ''}
+                      ${member.honorifics ? `<p class="small text-muted mb-0"><i class="bi bi-patch-check-fill text-lemon me-1"></i>${member.honorifics}</p>` : ""}
                     </div>
                   </div>
                   <div class="mb-4">
@@ -341,7 +347,7 @@
                       <i class="bi bi-person-lines-fill text-lemon"></i> Biography & Background
                     </h5>
                     <div class="lh-lg text-body fs-6">
-                      ${member.bio_full ? member.bio_full.split('\n\n').map(p => `<p>${p}</p>`).join('') : `<p>${member.bio_snippet || ''}</p>`}
+                      ${member.bio_full ? member.bio_full.split("\n\n").map(p => `<p>${p}</p>`).join("") : `<p>${member.bio_snippet || ""}</p>`}
                     </div>
                   </div>
                   <div class="d-flex justify-content-end pt-3 border-top">
@@ -353,6 +359,28 @@
           `;
           document.body.appendChild(modalDiv);
         }
+      }
+    });
+
+    // ── Reorder DOM cards to match API order_index sequence ──────────────────
+    // The API returns members already sorted by order_index ASC.
+    // We re-insert each column element into gridContainer in that exact order.
+    members.forEach(member => {
+      let col = gridContainer.querySelector(`[data-member-id="${member.id}"]`);
+      if (!col) {
+        const nameEls = Array.from(gridContainer.querySelectorAll(".team-member-name"));
+        const matchEl = nameEls.find(el => {
+          const txt = el.textContent.trim().toLowerCase();
+          const mName = member.name.toLowerCase();
+          return txt.includes(mName) || mName.includes(txt);
+        });
+        if (matchEl) {
+          col = matchEl.closest(".col-lg-4") || matchEl.closest(".col-md-6") || matchEl.parentElement;
+          if (col) col.setAttribute("data-member-id", member.id);
+        }
+      }
+      if (col && col.parentElement === gridContainer) {
+        gridContainer.appendChild(col);
       }
     });
   }

@@ -471,6 +471,7 @@ async function shiftTeamMember(categoryKey, memberId, direction) {
   try {
     await reorderTeamMembers(members.map(m => ({ id: m.id, order_index: m.order_index })));
     bustPublicCache(['team_board', 'team_management', 'team_advisory']);
+    showToast('Profile order updated successfully');
   } catch (err) {
     showToast('Failed to save order: ' + err.message, 'error');
   }
