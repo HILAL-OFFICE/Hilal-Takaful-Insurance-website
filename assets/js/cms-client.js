@@ -240,22 +240,37 @@
           const modalTarget = card.getAttribute('data-bs-target');
           if (modalTarget) {
             const modalEl = document.querySelector(modalTarget);
-            if (modalEl && member.bio_full) {
-              const modalBody = modalEl.querySelector('.modal-body');
-              if (modalBody) {
-                const paras = member.bio_full.split('\n\n').filter(p => p.trim().length > 0);
-                if (paras.length > 0) {
-                  const existingP = modalBody.querySelectorAll('p');
-                  if (existingP.length >= paras.length) {
-                    paras.forEach((text, i) => {
-                      if (existingP[i]) existingP[i].textContent = text;
-                    });
-                  }
+            if (modalEl) {
+              if (member.role) {
+                const modalRole = modalEl.querySelector('.text-lemon.fw-bold');
+                if (modalRole) modalRole.textContent = member.role;
+              }
+              if (member.honorifics) {
+                const modalHon = modalEl.querySelector('.small.text-muted');
+                if (modalHon) modalHon.innerHTML = `<i class="bi bi-patch-check-fill text-lemon me-1"></i>${member.honorifics}`;
+              }
+              if (member.bio_full) {
+                const bioContainer = modalEl.querySelector('.lh-lg.text-body') || modalEl.querySelector('.modal-body .mb-4 div');
+                if (bioContainer) {
+                  const paras = member.bio_full.split(/\n\n+/).filter(p => p.trim().length > 0);
+                  bioContainer.innerHTML = paras.map(p => `<p>${p}</p>`).join('');
                 }
               }
             }
           }
         }
+      }
+    });
+
+    // Cleanly remove any team card from the page if it has been deleted from the database
+    existingCards.forEach(card => {
+      const nameEl = card.querySelector('.team-member-name');
+      if (!nameEl) return;
+      const cardName = nameEl.textContent.trim().toLowerCase();
+      const stillExists = members.some(m => cardName.includes(m.name.toLowerCase()) || m.name.toLowerCase().includes(cardName));
+      if (!stillExists) {
+        const col = card.closest('.col-lg-4') || card.closest('.col-md-6') || card.parentElement;
+        if (col) col.remove();
       }
     });
 
@@ -434,6 +449,18 @@
             }
           }
         }
+      }
+    });
+
+    // Cleanly remove any product card from the page if it has been deleted from the database
+    existingCards.forEach(card => {
+      const titleEl = card.querySelector('.product-card-title');
+      if (!titleEl) return;
+      const cardTitle = titleEl.textContent.trim().toLowerCase();
+      const stillExists = products.some(p => cardTitle.includes(p.title.toLowerCase()) || p.title.toLowerCase().includes(cardTitle));
+      if (!stillExists) {
+        const col = card.closest('.col-lg-4') || card.closest('.product-item-col') || card.parentElement;
+        if (col) col.remove();
       }
     });
 
