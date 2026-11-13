@@ -79,6 +79,35 @@ router.delete('/team/:id', async (req, res) => {
   }
 });
 
+// PATCH /api/admin/team/reorder — bulk update order_index for a leadership category
+// Body: { updates: [{ id, order_index }, ...] }
+router.patch('/team/reorder', async (req, res) => {
+  try {
+    const { updates } = req.body;
+    if (!Array.isArray(updates) || updates.length === 0) {
+      return res.status(400).json({ error: 'updates array is required' });
+    }
+
+    const errors = [];
+    for (const { id, order_index } of updates) {
+      const { error } = await supabaseAdmin
+        .from('team_members')
+        .update({ order_index, updated_at: new Date().toISOString() })
+        .eq('id', id);
+      if (error) errors.push(`${id}: ${error.message}`);
+    }
+
+    if (errors.length > 0) {
+      return res.status(500).json({ error: errors.join('; ') });
+    }
+
+    res.json({ success: true, message: `Reordered ${updates.length} members` });
+  } catch (err) {
+    console.error('Admin team reorder error:', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // -----------------------------------------------------------------------------
 // PRODUCTS
 // -----------------------------------------------------------------------------

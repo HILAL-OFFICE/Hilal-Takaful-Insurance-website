@@ -155,6 +155,17 @@ async function getSession() {
 }
 
 /**
+ * Reorder team members by sending bulk order_index updates to backend
+ * @param {Array<{id: string, order_index: number}>} updates
+ */
+async function reorderTeamMembers(updates) {
+  return apiRequest('/admin/team/reorder', {
+    method: 'PATCH',
+    body: JSON.stringify({ updates })
+  });
+}
+
+/**
  * Toast Notification Utility
  */
 function showToast(message, type = 'success') {

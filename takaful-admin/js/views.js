@@ -334,6 +334,45 @@ async function renderLeadershipView(container) {
     const res = await apiRequest('/content/team');
     currentTeam = res.data || [];
 
+    // Group by category (API already sorts by order_index ASC)
+    const groups = {
+      board:      { label: 'Board of Directors', members: [] },
+      management: { label: 'Management Team',    members: [] },
+      advisory:   { label: 'Advisory Council',   members: [] }
+    };
+    currentTeam.forEach(m => {
+      const cat = m.category?.toLowerCase();
+      if (groups[cat]) groups[cat].members.push(m);
+    });
+
+    const renderGroup = (key, { label, members }) => {
+      if (members.length === 0) return '';
+      return `
+        <div class="content-card mb-4" id="group-${key}">
+          <h6 class="fw-bold text-navy mb-3 pb-2 border-bottom">
+            <i class="bi bi-people-fill me-2"></i>${label}
+            <span class="badge bg-light text-muted border ms-2 fw-normal">${members.length}</span>
+          </h6>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width:60px">Order</th>
+                  <th style="width:48px">Avatar</th>
+                  <th>Name &amp; Title</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-${key}">
+                ${members.map((m, idx) => renderTeamRow(m, idx, members.length, key)).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>`;
+    };
+
     container.innerHTML = `
       <div class="d-flex justify-content-between align-items-center mb-4">
         <p class="text-muted mb-0">Total Profiles: <strong>${currentTeam.length}</strong></p>
@@ -341,55 +380,103 @@ async function renderLeadershipView(container) {
           <i class="bi bi-plus-circle me-1"></i>Add New Leader
         </button>
       </div>
-
-      <div class="content-card">
-        <div class="table-responsive">
-          <table class="admin-table">
-            <thead>
-              <tr>
-                <th>Avatar</th>
-                <th>Name & Title</th>
-                <th>Category</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${currentTeam.length === 0 ? '<tr><td colspan="6" class="text-center text-muted py-4">No leadership profiles found. Click "Add New Leader" to create one.</td></tr>' : ''}
-              ${currentTeam.map(m => `
-                <tr>
-                  <td>
-                    <img src="${m.avatar_url || '../assets/images/favicon.png'}" class="rounded-circle border" width="44" height="44" style="object-fit: cover;" onerror="this.src='../assets/images/favicon.png'">
-                  </td>
-                  <td>
-                    <div class="fw-bold text-navy">${m.name} ${m.honorifics ? `<span class="badge bg-light text-navy border ms-1">${m.honorifics}</span>` : ''}</div>
-                    <small class="text-muted">${m.sub_title || ''}</small>
-                  </td>
-                  <td><span class="badge badge-lemon text-capitalize">${m.category}</span></td>
-                  <td>${m.role}</td>
-                  <td><span class="badge ${m.is_active ? 'bg-success' : 'bg-secondary'}">${m.is_active ? 'Active' : 'Hidden'}</span></td>
-                  <td>
-                    <div class="d-flex gap-2">
-                      <button class="btn btn-sm btn-outline-primary" onclick="editTeamMember('${m.id}')" title="Edit Profile">
-                        <i class="bi bi-pencil-square"></i>
-                      </button>
-                      <button class="btn btn-sm btn-outline-danger" onclick="deleteTeamMember('${m.id}')" title="Delete Profile">
-                        <i class="bi bi-trash"></i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              `).join('')}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      ${Object.entries(groups).map(([key, g]) => renderGroup(key, g)).join('')}
+      ${currentTeam.length === 0 ? '<div class="content-card text-center text-muted py-5">No leadership profiles found. Click "Add New Leader" to create one.</div>' : ''}
     `;
   } catch (err) {
     container.innerHTML = `<div class="alert alert-danger">Error loading team: ${err.message}</div>`;
   }
 }
+
+/** Render a single team member row with up/down reorder arrows */
+function renderTeamRow(m, idx, total, categoryKey) {
+  const isFirst = idx === 0;
+  const isLast  = idx === total - 1;
+  const honorificsBadge = m.honorifics
+    ? `<span class="badge bg-light text-navy border ms-1">${m.honorifics}</span>` : '';
+  return `
+    <tr data-id="${m.id}" data-category="${categoryKey}" data-order="${m.order_index ?? idx}">
+      <td>
+        <div class="d-flex flex-column gap-1 align-items-center">
+          <button class="btn btn-outline-secondary p-0 px-2 lh-sm"
+                  style="font-size:0.7rem;line-height:1.4"
+                  ${isFirst ? 'disabled' : ''}
+                  onclick="shiftTeamMember('${categoryKey}','${m.id}','up')"
+                  title="Move up">?</button>
+          <button class="btn btn-outline-secondary p-0 px-2 lh-sm"
+                  style="font-size:0.7rem;line-height:1.4"
+                  ${isLast ? 'disabled' : ''}
+                  onclick="shiftTeamMember('${categoryKey}','${m.id}','down')"
+                  title="Move down">?</button>
+        </div>
+      </td>
+      <td>
+        <img src="${m.avatar_url || '../assets/images/favicon.png'}"
+             class="rounded-circle border" width="44" height="44"
+             style="object-fit:cover"
+             onerror="this.src='../assets/images/favicon.png'">
+      </td>
+      <td>
+        <div class="fw-bold text-navy">${m.name} ${honorificsBadge}</div>
+        <small class="text-muted">${m.sub_title || ''}</small>
+      </td>
+      <td>${m.role}</td>
+      <td><span class="badge ${m.is_active ? 'bg-success' : 'bg-secondary'}">${m.is_active ? 'Active' : 'Hidden'}</span></td>
+      <td>
+        <div class="d-flex gap-2">
+          <button class="btn btn-sm btn-outline-primary" onclick="editTeamMember('${m.id}')" title="Edit Profile">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-danger" onclick="deleteTeamMember('${m.id}')" title="Delete Profile">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      </td>
+    </tr>`;
+}
+
+/**
+ * Move a team member up or down within their category.
+ * Swaps order_index values with the adjacent neighbour and persists to backend.
+ */
+async function shiftTeamMember(categoryKey, memberId, direction) {
+  const members = currentTeam.filter(m => m.category?.toLowerCase() === categoryKey);
+  const idx = members.findIndex(m => m.id === memberId);
+  if (idx === -1) return;
+
+  const swapIdx = direction === 'up' ? idx - 1 : idx + 1;
+  if (swapIdx < 0 || swapIdx >= members.length) return;
+
+  // Swap the order_index values in memory
+  const aOrder = members[idx].order_index   ?? idx;
+  const bOrder = members[swapIdx].order_index ?? swapIdx;
+  members[idx].order_index   = bOrder;
+  members[swapIdx].order_index = aOrder;
+
+  // Reflect swap in currentTeam global
+  members.forEach(m => {
+    const gi = currentTeam.findIndex(gm => gm.id === m.id);
+    if (gi !== -1) currentTeam[gi].order_index = m.order_index;
+  });
+
+  // Swap the array positions so the new order renders correctly
+  [members[idx], members[swapIdx]] = [members[swapIdx], members[idx]];
+
+  // Optimistic UI — re-render just this category's tbody
+  const tbody = document.getElementById(`tbody-${categoryKey}`);
+  if (tbody) {
+    tbody.innerHTML = members.map((m, i) => renderTeamRow(m, i, members.length, categoryKey)).join('');
+  }
+
+  // Persist to backend
+  try {
+    await reorderTeamMembers(members.map(m => ({ id: m.id, order_index: m.order_index })));
+    bustPublicCache(['team_board', 'team_management', 'team_advisory']);
+  } catch (err) {
+    showToast('Failed to save order: ' + err.message, 'error');
+  }
+}
+
 
 // Cropper instance reference
 let cropperInstance = null;
