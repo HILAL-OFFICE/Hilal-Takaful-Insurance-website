@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Hilal Takaful CMS - Views & Section Routing
  */
 
@@ -398,16 +398,14 @@ function renderTeamRow(m, idx, total, categoryKey) {
     <tr data-id="${m.id}" data-category="${categoryKey}" data-order="${m.order_index ?? idx}">
       <td>
         <div class="d-flex flex-column gap-1 align-items-center">
-          <button class="btn btn-outline-secondary p-0 px-2 lh-sm"
-                  style="font-size:0.7rem;line-height:1.4"
+          <button class="btn btn-sm btn-outline-secondary py-0 px-1"
                   ${isFirst ? 'disabled' : ''}
                   onclick="shiftTeamMember('${categoryKey}','${m.id}','up')"
-                  title="Move up">?</button>
-          <button class="btn btn-outline-secondary p-0 px-2 lh-sm"
-                  style="font-size:0.7rem;line-height:1.4"
+                  title="Move up"><i class="bi bi-arrow-up-short fs-5"></i></button>
+          <button class="btn btn-sm btn-outline-secondary py-0 px-1"
                   ${isLast ? 'disabled' : ''}
                   onclick="shiftTeamMember('${categoryKey}','${m.id}','down')"
-                  title="Move down">?</button>
+                  title="Move down"><i class="bi bi-arrow-down-short fs-5"></i></button>
         </div>
       </td>
       <td>
@@ -439,34 +437,35 @@ function renderTeamRow(m, idx, total, categoryKey) {
  * Move a team member up or down within their category.
  * Swaps order_index values with the adjacent neighbour and persists to backend.
  */
+/**
+ * Move a team member up or down within their category.
+ * Reads current order from the DOM tbody (always up-to-date after each re-render)
+ * so consecutive moves chain correctly without stale state.
+ */
 async function shiftTeamMember(categoryKey, memberId, direction) {
-  const members = currentTeam.filter(m => m.category?.toLowerCase() === categoryKey);
+  // Source of truth = DOM row order (not currentTeam which retains insertion order)
+  const tbody = document.getElementById(`tbody-${categoryKey}`);
+  if (!tbody) return;
+
+  const rows = Array.from(tbody.querySelectorAll('tr[data-id]'));
+  const members = rows.map(r => currentTeam.find(m => m.id === r.dataset.id)).filter(Boolean);
+
   const idx = members.findIndex(m => m.id === memberId);
   if (idx === -1) return;
 
   const swapIdx = direction === 'up' ? idx - 1 : idx + 1;
   if (swapIdx < 0 || swapIdx >= members.length) return;
 
-  // Swap the order_index values in memory
-  const aOrder = members[idx].order_index   ?? idx;
-  const bOrder = members[swapIdx].order_index ?? swapIdx;
-  members[idx].order_index   = bOrder;
-  members[swapIdx].order_index = aOrder;
+  // Stamp clean sequential order_index values based on current DOM order, then swap the two slots
+  members.forEach((m, i) => { m.order_index = i; });
+  members[idx].order_index   = swapIdx;
+  members[swapIdx].order_index = idx;
 
-  // Reflect swap in currentTeam global
-  members.forEach(m => {
-    const gi = currentTeam.findIndex(gm => gm.id === m.id);
-    if (gi !== -1) currentTeam[gi].order_index = m.order_index;
-  });
-
-  // Swap the array positions so the new order renders correctly
+  // Swap array positions to match the new visual order
   [members[idx], members[swapIdx]] = [members[swapIdx], members[idx]];
 
-  // Optimistic UI � re-render just this category's tbody
-  const tbody = document.getElementById(`tbody-${categoryKey}`);
-  if (tbody) {
-    tbody.innerHTML = members.map((m, i) => renderTeamRow(m, i, members.length, categoryKey)).join('');
-  }
+  // Optimistic UI — re-render just this category tbody immediately
+  tbody.innerHTML = members.map((m, i) => renderTeamRow(m, i, members.length, categoryKey)).join('');
 
   // Persist to backend
   try {
