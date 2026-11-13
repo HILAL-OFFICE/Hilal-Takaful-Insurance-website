@@ -747,6 +747,18 @@
       }
     });
 
+    // Cleanly remove any blog card from the page if it has been deleted from the database
+    existingCards.forEach(card => {
+      const titleEl = card.querySelector('.blog-title-ht');
+      if (!titleEl) return;
+      const cardTitle = titleEl.textContent.trim().toLowerCase();
+      const stillExists = posts.some(p => cardTitle.includes(p.title.toLowerCase()) || p.title.toLowerCase().includes(cardTitle));
+      if (!stillExists) {
+        const col = card.closest('.col-md-6') || card.closest('.col-lg-3') || card.parentElement;
+        if (col) col.remove();
+      }
+    });
+
     // Append newly published articles
     posts.forEach(post => {
       if (!matchedIds.has(post.id)) {
