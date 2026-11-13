@@ -9,7 +9,7 @@ const isLocalhost = window.location.hostname === 'localhost' || window.location.
 window.CMS_CONFIG = {
   SUPABASE_URL: 'https://zgtjizjulvkhicjsydtg.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_e4UzLdAlRuTwmIltDfc91Q_dMkKqIzH',
-  API_BASE_URL: isLocalhost ? 'http://localhost:5000/api' : 'https://admin.hilaltakaful.com.ng/api'
+  API_BASE_URL: isLocalhost ? 'http://localhost:5000/api' : 'https://hilal-takaful-insurance-website.onrender.com/api'
 };
 
 // Initialize Supabase client

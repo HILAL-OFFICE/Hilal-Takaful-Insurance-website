@@ -15,7 +15,7 @@
   const API_BASE = window.CMS_API_URL || 
     (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
       ? 'http://localhost:5000/api'
-      : 'https://admin.hilaltakaful.com.ng/api');
+      : 'https://hilal-takaful-insurance-website.onrender.com/api');
 
   /**
    * Universal Image Resolver & Fallback
