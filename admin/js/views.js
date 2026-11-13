@@ -474,6 +474,7 @@ function openTeamModal(member = null) {
   document.getElementById('teamHonorifics').value = member ? (member.honorifics || '') : '';
   document.getElementById('teamCategory').value = member ? member.category : 'board';
   document.getElementById('teamRole').value = member ? member.role : '';
+  document.getElementById('teamSubTitle').value = member ? (member.sub_title || '') : '';
   document.getElementById('teamAvatarUrl').value = member ? (member.avatar_url || '') : '';
   document.getElementById('teamBioSnippet').value = member ? (member.bio_snippet || '') : '';
   document.getElementById('teamBioFull').value = member ? (member.bio_full || '') : '';
@@ -512,6 +513,7 @@ function openTeamModal(member = null) {
         honorifics: document.getElementById('teamHonorifics').value.trim(),
         category: document.getElementById('teamCategory').value,
         role: document.getElementById('teamRole').value.trim(),
+        sub_title: document.getElementById('teamSubTitle').value.trim(),
         avatar_url: avatarUrl,
         bio_snippet: document.getElementById('teamBioSnippet').value.trim(),
         bio_full: document.getElementById('teamBioFull').value.trim(),

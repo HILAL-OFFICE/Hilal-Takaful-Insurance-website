@@ -245,9 +245,10 @@
                 const modalRole = modalEl.querySelector('.text-lemon.fw-bold');
                 if (modalRole) modalRole.textContent = member.role;
               }
-              if (member.honorifics) {
+              const subtitleText = member.sub_title || member.honorifics || '';
+              if (subtitleText) {
                 const modalHon = modalEl.querySelector('.small.text-muted');
-                if (modalHon) modalHon.innerHTML = `<i class="bi bi-patch-check-fill text-lemon me-1"></i>${member.honorifics}`;
+                if (modalHon) modalHon.innerHTML = `<i class="bi bi-patch-check-fill text-lemon me-1"></i>${subtitleText}`;
               }
               if (member.bio_full) {
                 const bioContainer = modalEl.querySelector('.lh-lg.text-body') || modalEl.querySelector('.modal-body .mb-4 div');
