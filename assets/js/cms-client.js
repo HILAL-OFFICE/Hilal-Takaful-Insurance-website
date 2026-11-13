@@ -412,11 +412,19 @@
             }
           }
 
-          // Also update features in the card if available
-          if (Array.isArray(prod.features) && prod.features.length > 0) {
-            const featBox = card.querySelector('.product-features-box ul');
-            if (featBox) {
-              featBox.innerHTML = prod.features.map(f => `<li><i class="bi bi-shield-check"></i><span>${f}</span></li>`).join('');
+          // Also update features in the card
+          const cardFeatBox = card.querySelector('.product-features-box');
+          if (cardFeatBox) {
+            const hasFeatures = Array.isArray(prod.features) && prod.features.length > 0;
+            if (hasFeatures) {
+              cardFeatBox.style.display = '';
+              const featList = cardFeatBox.querySelector('ul');
+              if (featList) {
+                featList.innerHTML = prod.features.map(f => `<li><i class="bi bi-shield-check"></i><span>${f}</span></li>`).join('');
+              }
+            } else if (prod.features !== undefined) {
+              // Explicitly empty: hide the card features box
+              cardFeatBox.style.display = 'none';
             }
           }
 
@@ -439,11 +447,23 @@
                   const overviewP = staticModal.querySelector('.col-md-7 p.text-muted');
                   if (overviewP) overviewP.textContent = prod.full_description;
                 }
-                // Update modal features list
-                if (Array.isArray(prod.features) && prod.features.length > 0) {
-                  const scopeList = staticModal.querySelector('.col-md-7 ul');
+                // Update modal features list / Scope of Protection
+                const scopeTitle = staticModal.querySelector('.col-md-7 h5:nth-of-type(2)');
+                const scopeList = staticModal.querySelector('.col-md-7 ul');
+                const hasFeatures = Array.isArray(prod.features) && prod.features.length > 0;
+
+                if (hasFeatures) {
+                  if (scopeTitle) scopeTitle.style.display = '';
                   if (scopeList) {
+                    scopeList.style.display = '';
                     scopeList.innerHTML = prod.features.map(f => `<li><i class="bi bi-check-circle-fill text-lemon me-2"></i>${f}</li>`).join('');
+                  }
+                } else if (prod.features !== undefined) {
+                  // Explicitly empty: cleanly hide the Scope of Protection section
+                  if (scopeTitle) scopeTitle.style.display = 'none';
+                  if (scopeList) {
+                    scopeList.style.display = 'none';
+                    scopeList.innerHTML = '';
                   }
                 }
               }
