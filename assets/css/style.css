@@ -241,6 +241,20 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-2px);
 }
 
+.btn-outline-navy {
+  background-color: transparent;
+  border: 2px solid var(--ht-navy);
+  color: var(--ht-navy);
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.btn-outline-navy:hover {
+  background-color: var(--ht-navy);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
 /* Hero Section */
 .hero-section {
   background-color: #FFFFFF;

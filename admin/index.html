@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hilal Takaful - CMS Admin Portal</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+
+  <!-- Bootstrap 5.3.3 CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Cropper.js for WhatsApp-style Circular Avatar Cropping -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.css">
+
+  <!-- Admin CMS Custom Stylesheet -->
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+    <div id="liveToast" class="toast align-items-center text-white bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMessage">Action completed.</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================================================
+       1. LOGIN SECTION (Visible when logged out)
+       ============================================================================== -->
+  <div id="loginSection" class="login-wrapper">
+    <div class="login-card">
+      <div class="text-center mb-4">
+        <img src="../assets/images/logo.png" alt="Hilal Takaful" class="login-logo img-fluid">
+        <h4 class="fw-bold text-navy mb-1">CMS Admin Portal</h4>
+        <p class="text-muted small">Sign in to manage website content and inquiries</p>
+      </div>
+
+      <form id="loginForm">
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Email Address</label>
+          <div class="input-group">
+            <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope text-muted"></i></span>
+            <input type="email" id="loginEmail" class="form-control border-start-0" placeholder="admin@hilaltakaful.com.ng" required>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label small fw-semibold">Password</label>
+          <div class="input-group">
+            <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock text-muted"></i></span>
+            <input type="password" id="loginPassword" class="form-control border-start-0" placeholder="••••••••" required>
+          </div>
+        </div>
+
+        <button type="submit" id="loginSubmitBtn" class="btn btn-lemon w-100 py-2 rounded-pill fw-bold">
+          <i class="bi bi-box-arrow-in-right me-2"></i>Sign In to Dashboard
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==============================================================================
+       2. APP SECTION (Visible when authenticated)
+       ============================================================================== -->
+  <div id="appSection" class="admin-layout d-none">
+    
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-brand">
+        <img src="../assets/images/logo.png" alt="Hilal Takaful Logo">
+        <div>
+          <div class="fw-bold fs-6">Hilal Takaful</div>
+          <small class="text-muted" style="font-size: 0.75rem;">CMS Management</small>
+        </div>
+      </div>
+
+      <ul class="sidebar-nav">
+        <li>
+          <button class="nav-link-btn active" data-section="settings">
+            <i class="bi bi-sliders"></i> Site Settings
+          </button>
+        </li>
+        <li>
+          <button class="nav-link-btn" data-section="leadership">
+            <i class="bi bi-people-fill"></i> Leadership & Team
+          </button>
+        </li>
+        <li>
+          <button class="nav-link-btn" data-section="products">
+            <i class="bi bi-shield-check"></i> Products & Plans
+          </button>
+        </li>
+        <li>
+          <button class="nav-link-btn" data-section="blog">
+            <i class="bi bi-newspaper"></i> Blog & Insights
+          </button>
+        </li>
+        <li>
+          <button class="nav-link-btn" data-section="gallery">
+            <i class="bi bi-images"></i> Event Gallery
+          </button>
+        </li>
+        <li>
+          <button class="nav-link-btn" data-section="reports">
+            <i class="bi bi-file-earmark-bar-graph"></i> Financial Reports
+          </button>
+        </li>
+        <li>
+          <button class="nav-link-btn" data-section="leads">
+            <i class="bi bi-inbox-fill"></i> Customer Inquiries
+          </button>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-person-circle fs-5 text-lemon"></i>
+          <span id="userEmailDisplay" class="small text-truncate" style="max-width: 140px;">Admin</span>
+        </div>
+        <button id="logoutBtn" class="btn btn-sm btn-outline-light border-0" title="Logout">
+          <i class="bi bi-box-arrow-right"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <h5 class="fw-bold text-navy mb-0" id="viewTitle">Dashboard</h5>
+        <div>
+          <a href="../index.html" target="_blank" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+            <i class="bi bi-globe me-1"></i>View Live Website
+          </a>
+        </div>
+      </header>
+
+      <section class="admin-content">
+        <div id="viewContainer">
+          <!-- Dynamically populated via views.js -->
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <!-- Modal: Add / Edit Team Member -->
+  <div class="modal fade" id="teamMemberModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow rounded-4">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold text-navy" id="teamModalTitle">Leadership Profile</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <form id="teamMemberForm">
+          <input type="hidden" name="id" id="teamId">
+          <div class="modal-body p-4">
+            <div class="row g-3 mb-3">
+              <div class="col-md-7">
+                <label class="form-label small fw-semibold">Full Name</label>
+                <input type="text" name="name" id="teamName" class="form-control" placeholder="e.g. Abdur-Rasheed Babalola" required>
+              </div>
+              <div class="col-md-5">
+                <label class="form-label small fw-semibold">Honorifics / Post-Nominals</label>
+                <input type="text" name="honorifics" id="teamHonorifics" class="form-control" placeholder="e.g. mni, FCA">
+              </div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Category</label>
+                <select name="category" id="teamCategory" class="form-select" required>
+                  <option value="board">Board of Directors</option>
+                  <option value="management">Management Team</option>
+                  <option value="advisory">Advisory Council</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Role Title</label>
+                <input type="text" name="role" id="teamRole" class="form-control" placeholder="e.g. Managing Director" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Profile Photo</label>
+              <div class="d-flex align-items-center gap-3 mb-2">
+                <img id="teamAvatarPreview" src="../assets/images/favicon.png" class="rounded-circle border" width="68" height="68" style="object-fit: cover;">
+                <div>
+                  <input type="file" id="teamPhotoInput" accept="image/*" class="form-control form-control-sm">
+                  <small class="text-muted" id="teamAvatarHelp">Upload photo to crop like WhatsApp profile picture.</small>
+                </div>
+              </div>
+              <input type="hidden" name="avatar_url" id="teamAvatarUrl">
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Card Preview Bio (Snippet)</label>
+              <textarea name="bio_snippet" id="teamBioSnippet" rows="2" class="form-control" placeholder="Short preview text for card..."></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Full Biography</label>
+              <textarea name="bio_full" id="teamBioFull" rows="5" class="form-control" placeholder="Complete biography shown in popup modal..." required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer border-top">
+            <button type="button" class="btn btn-light rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" id="teamSaveBtn" class="btn btn-lemon rounded-pill px-4 fw-bold">Save Profile</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add / Edit Product -->
+  <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow rounded-4">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold text-navy" id="productModalTitle">Product & Plan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <form id="productForm">
+          <input type="hidden" name="id" id="productId">
+          <div class="modal-body p-4">
+            <div class="row g-3 mb-3">
+              <div class="col-md-8">
+                <label class="form-label small fw-semibold">Product Title</label>
+                <input type="text" name="title" id="productTitle" class="form-control" placeholder="e.g. Goods-In-Transit Takaful Cover" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small fw-semibold">Category</label>
+                <select name="category" id="productCategory" class="form-select" required>
+                  <option value="general">General Takaful</option>
+                  <option value="family">Family Takaful</option>
+                </select>
+              </div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">URL Slug (unique identifier)</label>
+                <input type="text" name="slug" id="productSlug" class="form-control" placeholder="e.g. goods-in-transit-takaful-cover" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Icon Class (Bootstrap Icons)</label>
+                <input type="text" name="icon_class" id="productIconClass" class="form-control" placeholder="e.g. bi-shield-check">
+              </div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Shariah Contract Model</label>
+                <input type="text" name="shariah_model" id="productShariahModel" class="form-control" placeholder="e.g. Al-Tabarru, Wakalah, Mudarabah">
+                <small class="text-muted">Shown in the product detail modal.</small>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Product Banner Image <span class="text-danger">*</span></label>
+                <input type="file" id="productImageInput" accept="image/*" class="form-control">
+                <input type="hidden" name="brochure_url" id="productBrochureUrl">
+                <small class="text-muted" id="productImageHelp">Without one, a generic icon shows on the site.</small>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Short Summary (Card Description)</label>
+              <textarea name="short_description" id="productShortDesc" rows="2" class="form-control" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Key Features & Coverage (One per line)</label>
+              <textarea name="features_raw" id="productFeaturesRaw" rows="4" class="form-control" placeholder="Covers road accident and collision&#10;Protection during loading/unloading&#10;Annual surplus returns"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Full Detailed Description (Modal Content)</label>
+              <textarea name="full_description" id="productFullDesc" rows="5" class="form-control" required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer border-top">
+            <button type="button" class="btn btn-light rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" id="productSaveBtn" class="btn btn-lemon rounded-pill px-4 fw-bold">Save Product</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add / Edit Blog Post -->
+  <div class="modal fade" id="blogModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow rounded-4">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold text-navy" id="blogModalTitle">Blog Article</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <form id="blogForm">
+          <input type="hidden" name="id" id="blogId">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Article Title</label>
+              <input type="text" name="title" id="blogTitle" class="form-control" placeholder="e.g. How Hilal Takaful Supports Financial Stability" required>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-4">
+                <label class="form-label small fw-semibold">Category</label>
+                <input type="text" name="category" id="blogCategory" class="form-control" placeholder="e.g. Financial" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small fw-semibold">Author</label>
+                <input type="text" name="author_name" id="blogAuthor" class="form-control" placeholder="Hilal Takaful Team" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small fw-semibold">Status</label>
+                <select name="status" id="blogStatus" class="form-select" required>
+                  <option value="published">Published</option>
+                  <option value="draft">Draft</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Featured Image</label>
+              <input type="file" id="blogImageInput" accept="image/*" class="form-control">
+              <input type="hidden" name="featured_image" id="blogFeaturedImage">
+              <small class="text-muted" id="blogImageHelp">Upload article image or leave to retain current.</small>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Short Excerpt</label>
+              <textarea name="excerpt" id="blogExcerpt" rows="2" class="form-control" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Full Article Body (HTML / Rich Text)</label>
+              <textarea name="content_html" id="blogContentHtml" rows="8" class="form-control font-monospace" style="font-size: 0.85rem;" required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer border-top">
+            <button type="button" class="btn btn-light rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" id="blogSaveBtn" class="btn btn-lemon rounded-pill px-4 fw-bold">Save Article</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add / Edit Gallery Item -->
+  <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow rounded-4">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold text-navy" id="galleryModalTitle">Gallery Photo / Event</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <form id="galleryForm">
+          <input type="hidden" name="id" id="galleryId">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Event / Photo Title</label>
+              <input type="text" name="title" id="galleryTitle" class="form-control" placeholder="e.g. Staff Awards Night" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Description / Category Tag</label>
+              <input type="text" name="description" id="galleryDesc" class="form-control" placeholder="e.g. Staff Excellence">
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Photo File</label>
+              <input type="file" id="galleryPhotoInput" accept="image/*" class="form-control">
+              <input type="hidden" name="cover_image_url" id="galleryCoverUrl">
+              <small class="text-muted" id="galleryPhotoHelp">Upload photo or keep current.</small>
+            </div>
+          </div>
+          <div class="modal-footer border-top">
+            <button type="button" class="btn btn-light rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" id="gallerySaveBtn" class="btn btn-lemon rounded-pill px-4 fw-bold">Save Photo</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add / Edit Financial Report -->
+  <div class="modal fade" id="reportModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow rounded-4">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold text-navy" id="reportModalTitle">Financial Report</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <form id="reportForm">
+          <input type="hidden" name="id" id="reportId">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Report Title</label>
+              <input type="text" name="title" id="reportTitle" class="form-control" placeholder="e.g. Hilal Takaful 2024 Annual Report" required>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-semibold">Year</label>
+                <input type="number" name="year" id="reportYear" class="form-control" value="2024" required>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold">Category</label>
+                <select name="category" id="reportCategory" class="form-select" required>
+                  <option value="annual_report">Annual Report</option>
+                  <option value="shariah_report">Shariah Report</option>
+                  <option value="quarterly_statement">Quarterly Statement</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Download File URL or Cloud Link</label>
+              <input type="url" name="file_url" id="reportFileUrl" class="form-control" placeholder="https://..." required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Document Format / Size</label>
+              <input type="text" name="file_size" id="reportFileSize" class="form-control" placeholder="e.g. PDF Document (4.2 MB)">
+            </div>
+          </div>
+          <div class="modal-footer border-top">
+            <button type="button" class="btn btn-light rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" id="reportSaveBtn" class="btn btn-lemon rounded-pill px-4 fw-bold">Save Report</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cropper Modal: WhatsApp-style Circular Avatar Cropping -->
+  <div class="modal fade" id="cropModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+        <div class="modal-header bg-navy text-white py-3">
+          <h6 class="modal-title fw-bold text-white mb-0"><i class="bi bi-crop me-2 text-lemon"></i>Crop Profile Picture</h6>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-3 bg-dark text-center">
+          <div style="max-height: 420px; width: 100%; overflow: hidden; background: #000;">
+            <img id="cropperImage" style="max-width: 100%; display: block;" src="">
+          </div>
+          <small class="text-white-50 mt-2 d-block">Drag & zoom to position the circle over the face</small>
+        </div>
+        <div class="modal-footer bg-light py-2 px-3 justify-content-between">
+          <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" id="cropConfirmBtn" class="btn btn-sm btn-lemon rounded-pill px-4 fw-bold">
+            <i class="bi bi-check-lg me-1"></i>Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden text-center p-4">
+        <div class="mb-3">
+          <div class="rounded-circle bg-danger bg-opacity-10 text-danger d-inline-flex align-items-center justify-content-center" style="width: 58px; height: 58px;">
+            <i class="bi bi-exclamation-triangle fs-3"></i>
+          </div>
+        </div>
+        <h5 class="fw-bold text-navy mb-2">Delete Confirmation</h5>
+        <p class="text-muted small mb-4" id="deleteModalMessage">Are you sure you want to delete this item? This action cannot be undone.</p>
+        <div class="d-flex gap-2 justify-content-center">
+          <button type="button" class="btn btn-light rounded-pill px-3 btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" id="confirmDeleteBtn" class="btn btn-danger rounded-pill px-4 btn-sm fw-bold">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cropper.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.js"></script>
+  <!-- Supabase JS Library (v2) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- CMS Application Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/views.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

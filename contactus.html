@@ -559,8 +559,8 @@
   <script src="assets/js/components.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
-    // Handle form submit: automatically routes to WhatsApp and displays success notice
-    document.getElementById('mainContactForm').addEventListener('submit', function (e) {
+    // Handle form submit: automatically routes to WhatsApp AND records the lead into the CMS Customer Inquiries module
+    document.getElementById('mainContactForm').addEventListener('submit', async function (e) {
       e.preventDefault();
       const name = document.getElementById('contactName').value || 'Prospective Client';
       const phone = document.getElementById('contactPhone').value || 'N/A';
@@ -569,7 +569,23 @@
       const subject = document.getElementById('contactSubject').value || 'General Inquiry';
       const message = document.getElementById('contactMessage').value || '';
 
-      // Format WhatsApp inquiry text
+      // 1. Asynchronously send inquiry to CMS backend database
+      try {
+        fetch('http://localhost:5000/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            full_name: name,
+            email: email,
+            phone: phone,
+            subject: subject,
+            service_type: company ? `${subject} (${company})` : subject,
+            message: message
+          })
+        }).catch(err => console.debug('CMS lead capture notice:', err));
+      } catch (err) {}
+
+      // 2. Format WhatsApp inquiry text
       const waText = encodeURIComponent(
         `*New Website Contact Inquiry - Hilal Takaful*\n` +
         `• *Full Name:* ${name}\n` +
@@ -580,19 +596,21 @@
         `• *Message:* ${message}`
       );
 
-      // Show on-screen success alert
+      // 3. Show on-screen success alert
       const alertBox = document.getElementById('formSuccessAlert');
       if (alertBox) {
         alertBox.classList.remove('d-none');
         alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
 
-      // Automatically launch WhatsApp with the pre-filled enquiry
+      // 4. Automatically launch WhatsApp with the pre-filled enquiry
       window.open(`https://wa.me/2349076824451?text=${waText}`, '_blank');
 
-      // Reset form fields
+      // 5. Reset form fields
       this.reset();
     });
   </script>
+  <!-- Hilal CMS Real-time Dynamic Hydration -->
+  <script src="assets/js/cms-client.js"></script>
 </body>
 </html>
