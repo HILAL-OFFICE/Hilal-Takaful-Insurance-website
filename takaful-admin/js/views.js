@@ -393,7 +393,7 @@ function renderTeamRow(m, idx, total, categoryKey) {
   const isFirst = idx === 0;
   const isLast  = idx === total - 1;
   const honorificsBadge = m.honorifics
-    ? `<span class="badge bg-light text-navy border ms-1">${m.honorifics}</span>` : '';
+    ? `<span class="badge badge-honorifics ms-1">${m.honorifics}</span>` : '';
   return `
     <tr data-id="${m.id}" data-category="${categoryKey}" data-order="${m.order_index ?? idx}">
       <td>
