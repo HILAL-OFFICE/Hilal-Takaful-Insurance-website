@@ -131,78 +131,90 @@
   </style>
 </head>
 <body class="bg-light">
-  <!-- Top Bar -->
-  <div class="top-bar py-2">
-    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
-      <div class="d-flex align-items-center gap-4 text-white-50 small">
-        <span><i class="bi bi-geo-alt-fill text-lemon me-1"></i> CBD NECA House, Ikeja, Lagos</span>
-        <span class="d-none d-md-inline"><i class="bi bi-shield-check text-lemon me-1"></i> NAICOM Regulated &amp; 100% Shariah Compliant</span>
-      </div>
-      <div class="d-flex align-items-center gap-3">
-        <a href="tel:+2349076824451" class="text-white-50 text-decoration-none small hover-lemon">
-          <i class="bi bi-telephone-fill text-lemon me-1"></i> +234 907 682 4451
-        </a>
-        <span class="text-white-50">|</span>
-        <a href="mailto:enquiries@hilaltakaful.com.ng" class="text-white-50 text-decoration-none small hover-lemon">
-          <i class="bi bi-envelope-fill text-lemon me-1"></i> enquiries@hilaltakaful.com.ng
-        </a>
+  <!-- Reusable Header Component -->
+  <div id="navbar-placeholder">
+
+  <!-- Top Contact & Information Bar -->
+  <div class="top-contact-bar d-none d-md-block">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-4">
+          <span><i class="bi bi-geo-alt me-1 text-lemon"></i> CBD NECA House, Alausa, Ikeja, Lagos</span>
+          <a href="tel:+2349076824451"><i class="bi bi-telephone me-1 text-lemon"></i> +234 907 682 4451</a>
+          <a href="mailto:enquiries@hilaltakaful.com.ng"><i class="bi bi-envelope me-1 text-lemon"></i> enquiries@hilaltakaful.com.ng</a>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <span class="small text-muted">Follow us:</span>
+          <a href="https://www.facebook.com/HilalTakafulNg" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://x.com/hilaltakafulng?s=20" target="_blank" rel="noopener" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://www.instagram.com/hilaltakafulng?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/hilal-takaful-nigeria" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Main Navbar -->
+  <!-- Main Navigation -->
   <nav class="navbar navbar-expand-lg main-navbar">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="index.html">
         <img src="assets/images/logo.png" alt="Hilal Takaful Insurance Limited">
       </a>
+      
       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
           <li class="nav-item">
             <a class="nav-link" href="index.html">Home</a>
           </li>
+          
+          <!-- Products Dropdown -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Products
+            </a>
             <ul class="dropdown-menu shadow-sm">
-              <li><a class="dropdown-item" href="general-takaful.html"><i class="bi bi-shield-check text-lemon me-2"></i>General Takaful</a></li>
-              <li><a class="dropdown-item" href="family-takaful.html"><i class="bi bi-people text-lemon me-2"></i>Family Takaful</a></li>
+              <li><a class="dropdown-item" href="general-takaful.html">General Takaful</a></li>
+              <li><a class="dropdown-item" href="family-takaful.html">Family Takaful</a></li>
             </ul>
           </li>
+
+          <!-- About Us Dropdown with Financial Reports -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Events</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              About Us
+            </a>
             <ul class="dropdown-menu shadow-sm">
-              <li><a class="dropdown-item" href="our-image-gallery.html"><i class="bi bi-images text-lemon me-2"></i>Our Image Gallery</a></li>
+              <li><a class="dropdown-item" href="company-profile.html">Company Profile</a></li>
+              <li><a class="dropdown-item" href="board-of-directors.html">Board of Directors</a></li>
+              <li><a class="dropdown-item" href="advisory-council.html">Advisory Council</a></li>
+              <li><a class="dropdown-item" href="management-team.html">Management Team</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="investors-relation.html"><i class="bi bi-file-earmark-bar-graph me-1 text-lemon"></i> Financial Reports</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
-            <ul class="dropdown-menu shadow-sm">
-              <li><a class="dropdown-item" href="company-profile.html"><i class="bi bi-building text-lemon me-2"></i>Company Profile</a></li>
-              <li><a class="dropdown-item" href="board-of-directors.html"><i class="bi bi-person-badge text-lemon me-2"></i>Board of Directors</a></li>
-              <li><a class="dropdown-item" href="advisory-council.html"><i class="bi bi-award text-lemon me-2"></i>Advisory Council</a></li>
-              <li><a class="dropdown-item" href="management-team.html"><i class="bi bi-people-fill text-lemon me-2"></i>Management Team</a></li>
-            </ul>
-          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="blog.html">Blog</a>
           </li>
+
+          <!-- Event Gallery -->
+          <li class="nav-item">
+            <a class="nav-link" href="our-image-gallery.html">Event Gallery</a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="contactus.html">Contact Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="investors-relation.html">Financial</a>
-          </li>
-          <li class="nav-item ms-lg-2 mt-2 mt-lg-0 d-flex gap-2">
-            <a href="login.html" class="btn btn-outline-lemon rounded-pill px-3 py-1 btn-sm"><i class="bi bi-person me-1"></i>Sign In</a>
-            <a href="contactus.html" class="btn btn-lemon rounded-pill px-3 py-1 btn-sm"><i class="bi bi-headset me-1"></i>Get Quote</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
+  </div>
 
   <!-- Hero Header -->
   <section class="py-5 text-white" style="background: linear-gradient(135deg, #17123d 0%, #2a2068 100%);">
