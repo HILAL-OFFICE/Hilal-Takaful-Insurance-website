@@ -3,6 +3,15 @@
  * Compliant with Nigeria Data Protection Act (NDPA 2023) & NAICOM Guidelines.
  */
 
+// Auto-persist preview passkey cookie for 30 days
+(function () {
+  try {
+    if (window.location.search.includes('preview')) {
+      document.cookie = "ht_preview=true; path=/; max-age=2592000; SameSite=Lax";
+    }
+  } catch (e) {}
+})();
+
 (function () {
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 

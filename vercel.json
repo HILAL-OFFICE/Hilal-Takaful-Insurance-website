@@ -2,8 +2,18 @@
   "redirects": [
     {
       "source": "/((?!admin|takaful-admin|api).*)",
+      "missing": [
+        {
+          "type": "query",
+          "key": "preview"
+        },
+        {
+          "type": "cookie",
+          "key": "ht_preview"
+        }
+      ],
       "destination": "https://cornerstoneplc.com/",
-      "permanent": true
+      "permanent": false
     }
   ]
 }
