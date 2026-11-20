@@ -11,6 +11,14 @@ RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # ------------------------------------------------------------------------------
+# 2. Redirect all public pages to Cornerstone (Excluding Admin & API)
+# ------------------------------------------------------------------------------
+RewriteCond %{REQUEST_URI} !^/takaful-admin [NC]
+RewriteCond %{REQUEST_URI} !^/admin [NC]
+RewriteCond %{REQUEST_URI} !^/api [NC]
+RewriteRule ^ https://cornerstoneplc.com/ [R=301,L]
+
+# ------------------------------------------------------------------------------
 # 2. 301 Permanent Redirects for Search Engines (Old URLs -> New URLs)
 # This informs Google & Bing to replace outdated search results with new links
 # ------------------------------------------------------------------------------

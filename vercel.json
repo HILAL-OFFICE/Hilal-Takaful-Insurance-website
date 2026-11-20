@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/((?!admin|takaful-admin|api).*)",
+      "destination": "https://cornerstoneplc.com/",
+      "permanent": true
+    }
+  ]
+}
